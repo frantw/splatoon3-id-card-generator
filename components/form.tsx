@@ -1,5 +1,4 @@
 import React, { FC, useState, ChangeEvent, Fragment } from 'react';
-import GameCard from './gameCard';
 import StaffCard from './staffCard';
 import {
     Box,
@@ -17,6 +16,9 @@ import {
     CheckboxGroup,
 } from '@chakra-ui/react';
 import { CARD_TYPE, RANK_LEVEL, VOICE_CHAT, PLAY_STYLE, WEAPON_CLASS, WEAPON_TYPE } from '../typings';
+import dynamic from 'next/dynamic';
+
+const GameCard = dynamic(() => import('./gameCard'), { ssr: false });
 
 type Props = {
     cardType: CARD_TYPE;

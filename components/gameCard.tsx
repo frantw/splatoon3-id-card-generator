@@ -1,4 +1,8 @@
-import React, { FC, useRef, useEffect } from 'react';
+import React, { FC, useState, useRef, useLayoutEffect, useMemo } from 'react';
+import { Stage, Layer, Text } from 'react-konva';
+import { Box } from '@chakra-ui/react';
+import { Image } from 'react-konva';
+import useImage from 'use-image';
 import { VOICE_CHAT, PLAY_STYLE } from '../typings';
 
 type Props = {
@@ -12,29 +16,38 @@ type Props = {
     memo: string;
 };
 
-const GameCard: FC<Props> = ({ name, friendCode, favoriteWeapon, level, rankLevel, voiceChat, playStyle, memo }) => {
-    const canvasRef = useRef<HTMLCanvasElement>(null);
+const sceneWidth = 1920;
+const sceneHeight = 1080;
 
-    useEffect(() => {
-        const ctx = canvasRef.current?.getContext('2d');
-        if (!ctx) {
-            return;
-        }
-        const img = new Image(1920, 1080);
-        img.src = `/img/template/game-card.png`;
-        img.onload = () => {
-            ctx.drawImage(img, 0, 0);
-        };
+const CardImage: FC = () => {
+    const [image] = useImage('/img/template/game-card.png');
+    return <Image image={image} alt='splatoon3 game card' />;
+};
+
+const GameCard: FC<Props> = ({ name, friendCode, favoriteWeapon, level, rankLevel, voiceChat, playStyle, memo }) => {
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    const [containerWidth, setContainerWidth] = useState(0);
+    const [containerHeight, setContainerHeight] = useState(0);
+
+    useLayoutEffect(() => {
+        setContainerWidth(containerRef.current?.offsetWidth || 0);
+        setContainerHeight(containerRef?.current?.offsetHeight || 0);
     }, []);
 
-    useEffect(() => {
-        const ctx = canvasRef.current?.getContext('2d');
-        if (!ctx) {
-            return;
-        }
-    }, [name]);
+    // TODO: window resize
+    const scale = useMemo(() => containerWidth / sceneWidth, [containerWidth]);
 
-    return <canvas ref={canvasRef} width='1920' height='1080' style={{ width: '100%' }} />;
+    return (
+        <Box ref={containerRef}>
+            <Stage width={containerWidth} height={sceneHeight * scale} scale={{ x: scale, y: scale }}>
+                <Layer>
+                    <CardImage />
+                    <Text x={340} y={150} text={name} fontSize={40} fill={'black'} />
+                </Layer>
+            </Stage>
+        </Box>
+    );
 };
 
 export default GameCard;
