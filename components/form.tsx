@@ -12,10 +12,9 @@ import {
     Grid,
     GridItem,
     SimpleGrid,
-    Checkbox,
-    CheckboxGroup,
+    Button,
 } from '@chakra-ui/react';
-import { CARD_TYPE, RANK_LEVEL, VOICE_CHAT, PLAY_STYLE, WEAPON_CLASS, WEAPON_TYPE } from '../typings';
+import { CARD_TYPE, RANK_LEVEL, VOICE_CHAT, PLAY_RULE, WEAPON_CLASS, WEAPON_TYPE } from '../typings';
 import dynamic from 'next/dynamic';
 
 const GameCard = dynamic(() => import('./gameCard'), { ssr: false });
@@ -58,22 +57,29 @@ const Form: FC<Props> = ({ cardType }) => {
 
     const [rankLevel, setRankLevel] = useState('');
     const handleRankLevelChange = ({ currentTarget: { value } }: ChangeEvent<HTMLSelectElement>) => {
-        setRankLevel(value);
+        setRankLevel(RANK_LEVEL[value as keyof typeof RANK_LEVEL]);
     };
 
-    const [voiceChat, setVoiceChat] = useState(VOICE_CHAT.NONE);
+    const [voiceChat, setVoiceChat] = useState(VOICE_CHAT.DISCORD);
     const handleVoiceChatChange = ({ currentTarget: { value } }: ChangeEvent<HTMLInputElement>) => {
-        setVoiceChat(value as VOICE_CHAT);
+        setVoiceChat(VOICE_CHAT[value as keyof typeof VOICE_CHAT]);
     };
 
-    const [playStyle, setPlayStyle] = useState(new Set());
-    const handlePlayStyleChange = ({ currentTarget: { value } }: ChangeEvent<HTMLInputElement>) => {
-        if (playStyle.has(value)) {
-            playStyle.delete(value);
+    const [favoritePlayRules, setFavoritePlayRules] = useState(new Set());
+    const [acceptablePlayRules, setAcceptablePlayRules] = useState(new Set());
+    const handlePlayRulesClick = (rule: PLAY_RULE) => {
+        if (favoritePlayRules.has(rule)) {
+            favoritePlayRules.delete(rule);
+            acceptablePlayRules.add(rule);
+            setFavoritePlayRules(new Set([...favoritePlayRules]));
+            setAcceptablePlayRules(new Set([...acceptablePlayRules]));
+        } else if (acceptablePlayRules.has(rule)) {
+            acceptablePlayRules.delete(rule);
+            setAcceptablePlayRules(new Set([...acceptablePlayRules]));
         } else {
-            playStyle.add(value);
+            favoritePlayRules.add(rule);
+            setFavoritePlayRules(new Set([...favoritePlayRules]));
         }
-        setPlayStyle(new Set([...playStyle]));
     };
 
     const [memo, setMemo] = useState('');
@@ -91,7 +97,8 @@ const Form: FC<Props> = ({ cardType }) => {
                     level={level}
                     rankLevel={rankLevel}
                     voiceChat={voiceChat}
-                    playStyle={playStyle as Set<keyof typeof PLAY_STYLE>}
+                    favoritePlayRules={favoritePlayRules as Set<PLAY_RULE>}
+                    acceptablePlayRules={acceptablePlayRules as Set<PLAY_RULE>}
                     memo={memo}
                 ></GameCard>
             )}
@@ -178,7 +185,7 @@ const Form: FC<Props> = ({ cardType }) => {
                     {/* Voice Chat */}
                     <FormControl mt={6} as='fieldset'>
                         <FormLabel as='legend'>語音方式</FormLabel>
-                        <RadioGroup>
+                        <RadioGroup defaultValue={'DISCORD'}>
                             <HStack spacing='24px'>
                                 {(Object.keys(VOICE_CHAT) as (keyof typeof VOICE_CHAT)[]).map((voiceChat) => (
                                     <Radio key={voiceChat} value={voiceChat} onChange={handleVoiceChatChange}>
@@ -192,15 +199,22 @@ const Form: FC<Props> = ({ cardType }) => {
                     {/* Play Style */}
                     <FormControl mt={6} as='fieldset'>
                         <FormLabel as='legend'>喜愛玩法</FormLabel>
-                        <CheckboxGroup>
-                            <HStack spacing='24px'>
-                                {(Object.keys(PLAY_STYLE) as (keyof typeof PLAY_STYLE)[]).map((playStyle) => (
-                                    <Checkbox key={playStyle} value={playStyle} onChange={handlePlayStyleChange}>
-                                        {PLAY_STYLE[playStyle]}
-                                    </Checkbox>
-                                ))}
-                            </HStack>
-                        </CheckboxGroup>
+                        <HStack spacing='16px'>
+                            {(Object.keys(PLAY_RULE) as (keyof typeof PLAY_RULE)[]).map((key) => {
+                                const rule = PLAY_RULE[key];
+                                const isFavorite = favoritePlayRules.has(rule);
+                                const isAcceptable = acceptablePlayRules.has(rule);
+                                return (
+                                    <Button
+                                        key={key}
+                                        colorScheme={isFavorite ? 'blue' : isAcceptable ? 'blackAlpha' : 'gray'}
+                                        onClick={() => handlePlayRulesClick(rule)}
+                                    >
+                                        {rule}
+                                    </Button>
+                                );
+                            })}
+                        </HStack>
                     </FormControl>
 
                     {/* Memo */}

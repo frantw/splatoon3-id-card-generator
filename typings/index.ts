@@ -27,7 +27,7 @@ export enum VOICE_CHAT {
     NONE = '不使用語音',
 }
 
-export enum PLAY_STYLE {
+export enum PLAY_RULE {
     TURF_WAR = '塗地比賽',
     SALMON_RUN = '鮭魚打工',
     TABLETURF_BATTLE = '佔地鬥士',
