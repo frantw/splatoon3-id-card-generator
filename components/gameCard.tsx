@@ -43,7 +43,7 @@ const GameCard: FC<Props> = ({ name, friendCode, favoriteWeapon, level, rankLeve
             <Stage width={containerWidth} height={sceneHeight * scale} scale={{ x: scale, y: scale }}>
                 <Layer>
                     <CardImage />
-                    <Text x={340} y={150} text={name} fontSize={40} fill={'black'} />
+                    <Text x={340} y={150} text={name} fontSize={40} fontFamily={'naikaifont'} fill={'black'} />
                 </Layer>
             </Stage>
         </Box>
