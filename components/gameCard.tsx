@@ -97,7 +97,7 @@ const GameCard: FC<Props> = ({
 
     useLayoutEffect(() => {
         setContainerWidth(containerRef.current?.offsetWidth || 0);
-        setContainerHeight(containerRef?.current?.offsetHeight || 0);
+        setContainerHeight(containerRef.current?.offsetHeight || 0);
     }, []);
 
     // TODO: window resize
@@ -108,11 +108,13 @@ const GameCard: FC<Props> = ({
     const handleExport = () => {
         if (!stageRef.current) return;
         const stage = stageRef.current;
+        const prevSize = stage.size();
+        const prevScale = stage.scale();
         stage.size({ width: sceneWidth, height: sceneHeight });
         stage.scale({ x: 1.0, y: 1.0 });
         const uri = stage.toDataURL();
-        stage.size({ width: containerWidth, height: sceneHeight * scale });
-        stage.scale({ x: scale, y: scale });
+        stage.size(prevSize);
+        stage.scale(prevScale);
         downloadURI(uri);
     };
 
