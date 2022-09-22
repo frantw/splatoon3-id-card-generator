@@ -1,8 +1,8 @@
-import React, { FC, useState, useRef, useLayoutEffect, useMemo } from 'react';
-import { Stage, Layer, Text } from 'react-konva';
-import { Box } from '@chakra-ui/react';
-import { Image } from 'react-konva';
+import React, { FC, useState, useLayoutEffect, useMemo, useRef, useEffect, MutableRefObject } from 'react';
+import Konva from 'konva';
+import { Stage, Layer, Text, Image } from 'react-konva';
 import useImage from 'use-image';
+import { Box } from '@chakra-ui/react';
 import { VOICE_CHAT, PLAY_RULE } from '../typings';
 
 type Props = {
@@ -15,11 +15,21 @@ type Props = {
     favoritePlayRules: Set<PLAY_RULE>;
     acceptablePlayRules: Set<PLAY_RULE>;
     memo: string;
+    exportRef: MutableRefObject<() => void | null>;
 };
 
 const sceneWidth = 1920;
 const sceneHeight = 1080;
 const fontColor = '#5c4c42';
+
+const downloadURI = (uri: string) => {
+    const link = document.createElement('a');
+    link.download = 'splatoon3-game-card.png';
+    link.href = uri;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+};
 
 const CardImage: FC = () => {
     const [image] = useImage('/img/template/game-card.png');
@@ -78,7 +88,9 @@ const GameCard: FC<Props> = ({
     favoritePlayRules,
     acceptablePlayRules,
     memo,
+    exportRef,
 }) => {
+    const stageRef = useRef<Konva.Stage>(null);
     const containerRef = useRef<HTMLDivElement>(null);
     const [containerWidth, setContainerWidth] = useState(0);
     const [containerHeight, setContainerHeight] = useState(0);
@@ -93,9 +105,25 @@ const GameCard: FC<Props> = ({
 
     const date = new Date().toLocaleDateString();
 
+    const handleExport = () => {
+        if (!stageRef.current) return;
+        const stage = stageRef.current;
+        stage.size({ width: sceneWidth, height: sceneHeight });
+        stage.scale({ x: 1.0, y: 1.0 });
+        const uri = stage.toDataURL();
+        stage.size({ width: containerWidth, height: sceneHeight * scale });
+        stage.scale({ x: scale, y: scale });
+        downloadURI(uri);
+    };
+
+    useEffect(() => {
+        exportRef.current = handleExport;
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     return (
         <Box ref={containerRef}>
-            <Stage width={containerWidth} height={sceneHeight * scale} scale={{ x: scale, y: scale }}>
+            <Stage ref={stageRef} width={containerWidth} height={sceneHeight * scale} scale={{ x: scale, y: scale }}>
                 <Layer>
                     <CardImage />
 

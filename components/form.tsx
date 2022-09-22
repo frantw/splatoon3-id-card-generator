@@ -1,4 +1,4 @@
-import React, { FC, useState, ChangeEvent, Fragment } from 'react';
+import React, { FC, useState, useRef, ChangeEvent, Fragment, MutableRefObject } from 'react';
 import StaffCard from './staffCard';
 import {
     Box,
@@ -14,6 +14,7 @@ import {
     SimpleGrid,
     Button,
 } from '@chakra-ui/react';
+import { DownloadIcon } from '@chakra-ui/icons';
 import { CARD_TYPE, RANK_LEVEL, VOICE_CHAT, PLAY_RULE, WEAPON_CLASS, WEAPON_TYPE } from '../typings';
 import dynamic from 'next/dynamic';
 
@@ -87,6 +88,8 @@ const Form: FC<Props> = ({ cardType }) => {
         setMemo(value);
     };
 
+    const exportRef = useRef(null) as unknown as MutableRefObject<() => void | null>;
+
     return (
         <Box>
             {cardType == CARD_TYPE.GAME_CARD && (
@@ -100,6 +103,7 @@ const Form: FC<Props> = ({ cardType }) => {
                     favoritePlayRules={favoritePlayRules as Set<PLAY_RULE>}
                     acceptablePlayRules={acceptablePlayRules as Set<PLAY_RULE>}
                     memo={memo}
+                    exportRef={exportRef}
                 ></GameCard>
             )}
 
@@ -226,6 +230,10 @@ const Form: FC<Props> = ({ cardType }) => {
             )}
 
             {/* TODO: staff card form */}
+
+            <Button colorScheme='purple' mt={30} leftIcon={<DownloadIcon />} onClick={() => exportRef.current()}>
+                下載名片
+            </Button>
         </Box>
     );
 };
