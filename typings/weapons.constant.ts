@@ -62,15 +62,15 @@ enum SHOOTER {
     NINETY_SIX_GAL = '.96加侖',
     AEROSPRAY_MG = '專業模型槍MG',
     H_3_NOZZLENOSE = 'H3捲管槍',
-    HERO_SHOT_REPLICA = '英雄水槍複製品', 
-    JET_SQUELCHER = '噴射清潔槍', 
+    HERO_SHOT_REPLICA = '英雄水槍複製品',
+    JET_SQUELCHER = '噴射清潔槍',
     L_3_NOZZLENOSE = 'L3捲管槍',
-    N_ZAP_85  = 'N-ZAP85',
+    N_ZAP_85 = 'N-ZAP85',
     SPLASH_O_MATIC = '窄域標記槍',
-    SPLATTERSHOT = '斯普拉射擊槍', 
+    SPLATTERSHOT = '斯普拉射擊槍',
     SPLATTERSHOT_JR = '新葉射擊槍',
-    SPLATTERSHOT_PRO = '頂尖射擊槍', 
-    SPLOOSH_O_MATIC = '廣域標記槍', 
+    SPLATTERSHOT_PRO = '頂尖射擊槍',
+    SPLOOSH_O_MATIC = '廣域標記槍',
     SQUEEZER = '開瓶噴泉槍',
 }
 
@@ -78,7 +78,7 @@ enum SLOSHER {
     BLOBLOBBER = '滿溢泡澡潑桶',
     EXPLOSHER = '爆炸潑桶',
     SLOSHER = '飛濺潑桶',
-    SLOSHING_MACHINE  = '迴旋潑桶',
+    SLOSHING_MACHINE = '迴旋潑桶',
     TRI_SLOSHER = '洗筆桶',
 }
 
@@ -111,5 +111,5 @@ export const WEAPON_TYPE = {
     SLOSHER,
     SPLATANA,
     SPLATLING,
-    STRINGER,    
+    STRINGER,
 };
