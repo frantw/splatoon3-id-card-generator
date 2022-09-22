@@ -1,11 +1,29 @@
 import React, { FC, useRef, useEffect } from 'react';
-import { CARD_TYPE } from '../typings';
+import { CARD_TYPE, VOICE_CHAT, PLAY_STYLE } from '../typings';
 
 type Props = {
     cardType: CARD_TYPE;
+    name: string;
+    friendCode: string;
+    favoriteWeapon: string;
+    level: string;
+    rankLevel: string;
+    voiceChat: VOICE_CHAT;
+    playStyle: Set<keyof typeof PLAY_STYLE>;
+    memo: string;
 };
 
-const Canvas: FC<Props> = ({ cardType }) => {
+const Canvas: FC<Props> = ({
+    cardType,
+    name,
+    friendCode,
+    favoriteWeapon,
+    level,
+    rankLevel,
+    voiceChat,
+    playStyle,
+    memo,
+}) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
     useEffect(() => {

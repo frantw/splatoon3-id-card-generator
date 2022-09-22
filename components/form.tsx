@@ -22,6 +22,16 @@ type Props = {
 };
 
 const Form: FC<Props> = ({ cardType }) => {
+    const [name, setName] = useState('');
+    const handleNameChange = ({ currentTarget: { value } }: ChangeEvent<HTMLInputElement>) => {
+        setName(value);
+    };
+
+    const [friendCode, setFriendCode] = useState('');
+    const handleFriendCodeChange = ({ currentTarget: { value } }: ChangeEvent<HTMLInputElement>) => {
+        setFriendCode(value);
+    };
+
     const [weaponList, setWeaponList] = useState({});
     const handleWeaponClassChange = ({ currentTarget: { value } }: ChangeEvent<HTMLSelectElement>) => {
         if (!value) {
@@ -30,20 +40,73 @@ const Form: FC<Props> = ({ cardType }) => {
         setWeaponList(WEAPON_TYPE[value as keyof typeof WEAPON_CLASS]);
     };
 
+    const [favoriteWeapon, setFavoriteWeapon] = useState('');
+    const handleFavoriteWeaponChange = ({ currentTarget: { value } }: ChangeEvent<HTMLSelectElement>) => {
+        if (!value) {
+            setFavoriteWeapon('');
+        }
+        setFavoriteWeapon(weaponList[value as keyof typeof weaponList]);
+    };
+
+    const [level, setLevel] = useState('');
+    const handleLevelChange = ({ currentTarget: { value } }: ChangeEvent<HTMLInputElement>) => {
+        setLevel(value);
+    };
+
+    const [rankLevel, setRankLevel] = useState('');
+    const handleRankLevelChange = ({ currentTarget: { value } }: ChangeEvent<HTMLSelectElement>) => {
+        setRankLevel(value);
+    };
+
+    const [voiceChat, setVoiceChat] = useState(VOICE_CHAT.NONE);
+    const handleVoiceChatChange = ({ currentTarget: { value } }: ChangeEvent<HTMLInputElement>) => {
+        setVoiceChat(value as VOICE_CHAT);
+    };
+
+    const [playStyle, setPlayStyle] = useState(new Set());
+    const handlePlayStyleChange = ({ currentTarget: { value } }: ChangeEvent<HTMLInputElement>) => {
+        if (playStyle.has(value)) {
+            playStyle.delete(value);
+        } else {
+            playStyle.add(value);
+        }
+        setPlayStyle(new Set([...playStyle]));
+    };
+
+    const [memo, setMemo] = useState('');
+    const handleMemoChange = ({ currentTarget: { value } }: ChangeEvent<HTMLInputElement>) => {
+        setMemo(value);
+    };
+
     return (
         <Box>
-            <Canvas cardType={cardType}></Canvas>
+            <Canvas
+                cardType={cardType}
+                name={name}
+                friendCode={friendCode}
+                favoriteWeapon={favoriteWeapon}
+                level={level}
+                rankLevel={rankLevel}
+                voiceChat={voiceChat}
+                playStyle={playStyle as Set<keyof typeof PLAY_STYLE>}
+                memo={memo}
+            ></Canvas>
 
             <SimpleGrid columns={2} spacing={10}>
                 {/* Name */}
                 <FormControl mt={6}>
                     <FormLabel>你的名字</FormLabel>
-                    <Input type='text' maxLength={10} />
+                    <Input type='text' maxLength={10} onChange={handleNameChange} />
                 </FormControl>
                 {/* Friend Code */}
                 <FormControl mt={6}>
                     <FormLabel>好友代碼</FormLabel>
-                    <Input type='text' maxLength={17} placeholder='SW-1234-5678-9999' />
+                    <Input
+                        type='text'
+                        maxLength={17}
+                        placeholder='SW-1234-5678-9999'
+                        onChange={handleFriendCodeChange}
+                    />
                 </FormControl>
             </SimpleGrid>
 
@@ -61,7 +124,7 @@ const Form: FC<Props> = ({ cardType }) => {
                                 ))}
                             </Select>
                             {/* Favorite Weapon */}
-                            <Select placeholder='選擇喜愛武器' isRequired={true}>
+                            <Select placeholder='選擇喜愛武器' isRequired={true} onChange={handleFavoriteWeaponChange}>
                                 {weaponList &&
                                     (Object.keys(weaponList) as (keyof typeof weaponList)[]).map((weapon) => (
                                         <option key={weapon as string} value={weapon as string}>
@@ -76,14 +139,14 @@ const Form: FC<Props> = ({ cardType }) => {
                     {/* Level */}
                     <FormControl mt={6}>
                         <FormLabel>你的等級</FormLabel>
-                        <Input type='number' maxLength={3} placeholder='1' />
+                        <Input type='number' maxLength={3} placeholder='1' onChange={handleLevelChange} />
                     </FormControl>
                 </GridItem>
                 <GridItem colSpan={1}>
                     {/* Rank Level */}
                     <FormControl mt={6}>
                         <FormLabel>Rank 等級</FormLabel>
-                        <Select>
+                        <Select onChange={handleRankLevelChange}>
                             {(Object.keys(RANK_LEVEL) as (keyof typeof RANK_LEVEL)[]).map((rankLevel) => (
                                 <option key={rankLevel} value={rankLevel}>
                                     {RANK_LEVEL[rankLevel]}
@@ -100,7 +163,7 @@ const Form: FC<Props> = ({ cardType }) => {
                 <RadioGroup>
                     <HStack spacing='24px'>
                         {(Object.keys(VOICE_CHAT) as (keyof typeof VOICE_CHAT)[]).map((voiceChat) => (
-                            <Radio key={voiceChat} value={voiceChat}>
+                            <Radio key={voiceChat} value={voiceChat} onChange={handleVoiceChatChange}>
                                 {VOICE_CHAT[voiceChat]}
                             </Radio>
                         ))}
@@ -114,7 +177,7 @@ const Form: FC<Props> = ({ cardType }) => {
                 <CheckboxGroup>
                     <HStack spacing='24px'>
                         {(Object.keys(PLAY_STYLE) as (keyof typeof PLAY_STYLE)[]).map((playStyle) => (
-                            <Checkbox key={playStyle} value={playStyle}>
+                            <Checkbox key={playStyle} value={playStyle} onChange={handlePlayStyleChange}>
                                 {PLAY_STYLE[playStyle]}
                             </Checkbox>
                         ))}
@@ -125,7 +188,7 @@ const Form: FC<Props> = ({ cardType }) => {
             {/* Memo */}
             <FormControl mt={6}>
                 <FormLabel>想說的話</FormLabel>
-                <Input type='text' maxLength={30} />
+                <Input type='text' maxLength={30} onChange={handleMemoChange} />
             </FormControl>
         </Box>
     );
