@@ -1,5 +1,5 @@
 import React, { FC, useRef, useEffect } from 'react';
-import { CARD_TYPE } from '../typings/constants';
+import { CARD_TYPE } from '../typings';
 
 type Props = {
     cardType: CARD_TYPE;
