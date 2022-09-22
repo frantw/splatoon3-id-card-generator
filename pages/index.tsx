@@ -5,13 +5,13 @@ import Center from '../components/center';
 import Footer from '../components/footer';
 
 const Home: NextPage = () => {
-  return (
-    <Container maxW={'full'} p={0}>
-      <Header/>
-      <Center/>
-      <Footer/>
-    </Container>
-  )
-}
+    return (
+        <Container maxW={'full'} p={0}>
+            <Header />
+            <Center />
+            <Footer />
+        </Container>
+    );
+};
 
-export default Home
+export default Home;

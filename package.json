@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "prettier '**/*.{js,jsx,ts,tsx}' --write"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.3.4",
