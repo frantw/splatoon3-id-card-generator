@@ -7,6 +7,8 @@ import {
     TabPanels,
     useColorModeValue,
   } from '@chakra-ui/react';
+import Canvas from './canvas';
+import { CARD_TYPE } from '../typings/constants';
   
 const Center = () => {
     return (
@@ -32,11 +34,11 @@ const Center = () => {
                 <Tab>打工員工證</Tab>
               </TabList>
               <TabPanels>
-                <TabPanel>
-                  <p>遊戲名片</p>
+                <TabPanel px={0}>
+                  <Canvas cardType={CARD_TYPE.GAME_CARD}></Canvas>
                 </TabPanel>
-                <TabPanel>
-                  <p>打工員工證</p>
+                <TabPanel px={0}>
+                  <Canvas cardType={CARD_TYPE.STAFF_CARD}></Canvas>
                 </TabPanel>
               </TabPanels>
             </Tabs>
