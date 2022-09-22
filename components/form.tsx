@@ -25,12 +25,12 @@ type Props = {
 };
 
 const Form: FC<Props> = ({ cardType }) => {
-    const [name, setName] = useState('');
+    const [name, setName] = useState('さくら');
     const handleNameChange = ({ currentTarget: { value } }: ChangeEvent<HTMLInputElement>) => {
         setName(value);
     };
 
-    const [friendCode, setFriendCode] = useState('');
+    const [friendCode, setFriendCode] = useState('SW-1234-5678-9999');
     const handleFriendCodeChange = ({ currentTarget: { value } }: ChangeEvent<HTMLInputElement>) => {
         setFriendCode(value);
     };
@@ -51,12 +51,12 @@ const Form: FC<Props> = ({ cardType }) => {
         setFavoriteWeapon(weaponList[value as keyof typeof weaponList]);
     };
 
-    const [level, setLevel] = useState('');
+    const [level, setLevel] = useState('1');
     const handleLevelChange = ({ currentTarget: { value } }: ChangeEvent<HTMLInputElement>) => {
         setLevel(value);
     };
 
-    const [rankLevel, setRankLevel] = useState('');
+    const [rankLevel, setRankLevel] = useState(RANK_LEVEL.C_MINUS);
     const handleRankLevelChange = ({ currentTarget: { value } }: ChangeEvent<HTMLSelectElement>) => {
         setRankLevel(RANK_LEVEL[value as keyof typeof RANK_LEVEL]);
     };
@@ -66,8 +66,8 @@ const Form: FC<Props> = ({ cardType }) => {
         setVoiceChat(VOICE_CHAT[value as keyof typeof VOICE_CHAT]);
     };
 
-    const [favoritePlayRules, setFavoritePlayRules] = useState(new Set());
-    const [acceptablePlayRules, setAcceptablePlayRules] = useState(new Set());
+    const [favoritePlayRules, setFavoritePlayRules] = useState(new Set([PLAY_RULE.TURF_WAR]));
+    const [acceptablePlayRules, setAcceptablePlayRules] = useState(new Set([PLAY_RULE.SALMON_RUN]));
     const handlePlayRulesClick = (rule: PLAY_RULE) => {
         if (favoritePlayRules.has(rule)) {
             favoritePlayRules.delete(rule);
@@ -175,7 +175,7 @@ const Form: FC<Props> = ({ cardType }) => {
                             {/* Rank Level */}
                             <FormControl mt={6}>
                                 <FormLabel>Rank 等級</FormLabel>
-                                <Select onChange={handleRankLevelChange}>
+                                <Select onChange={handleRankLevelChange} defaultValue={RANK_LEVEL.C_MINUS}>
                                     {(Object.keys(RANK_LEVEL) as (keyof typeof RANK_LEVEL)[]).map((rankLevel) => (
                                         <option key={rankLevel} value={rankLevel}>
                                             {RANK_LEVEL[rankLevel]}
