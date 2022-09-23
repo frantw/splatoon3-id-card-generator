@@ -42,7 +42,6 @@ const StaffCardForm: FC<Props> = ({
             playTime.add(time);
         }
         setPlayTime(new Set([...playTime]));
-        console.log(playTime);
     };
 
     const [timeMemo, setTimeMemo] = useState('24 小時全年無休！');
