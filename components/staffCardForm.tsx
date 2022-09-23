@@ -44,7 +44,7 @@ const StaffCardForm: FC<Props> = ({
         setPlayTime(new Set([...playTime]));
     };
 
-    const [timeMemo, setTimeMemo] = useState('24 小時全年無休！');
+    const [timeMemo, setTimeMemo] = useState('');
     const handleTimeMemoChange = ({ currentTarget: { value } }: ChangeEvent<HTMLInputElement>) => {
         setTimeMemo(value);
     };
@@ -110,7 +110,7 @@ const StaffCardForm: FC<Props> = ({
             {/* Time Memo */}
             <FormControl mt={6}>
                 <FormLabel>時間備註</FormLabel>
-                <Input type='text' maxLength={20} onChange={handleTimeMemoChange} />
+                <Input type='text' maxLength={28} onChange={handleTimeMemoChange} />
             </FormControl>
 
             <SimpleGrid columns={2} spacing={10}>
