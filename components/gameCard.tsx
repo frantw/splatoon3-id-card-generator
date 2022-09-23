@@ -3,6 +3,7 @@ import Konva from 'konva';
 import { Stage, Layer, Text, Image } from 'react-konva';
 import useImage from 'use-image';
 import { VOICE_CHAT, PLAY_RULE } from '../typings';
+import Shape, { shapeType } from './shape';
 
 type Props = {
     containerSize: { width: number; height: number };
@@ -36,46 +37,14 @@ const CardImage: FC = () => {
     return <Image image={image} alt='splatoon3 game card' />;
 };
 
-const Circle: FC<{ x: number; y: number; scale?: number; rotation?: number; isShow: boolean }> = ({
-    x,
-    y,
-    scale = 0.2,
-    rotation = 0,
-    isShow,
-}) => {
-    const [image] = useImage('/img/hand-drawn/circle.svg');
-    return (
-        // eslint-disable-next-line jsx-a11y/alt-text
-        <Image
-            image={image}
-            scale={{ x: scale, y: scale }}
-            rotation={rotation}
-            x={x}
-            y={y}
-            opacity={isShow ? 1.0 : 0.0}
-        />
-    );
+const Circle: FC<shapeType> = (props) => {
+    const src = '/img/hand-drawn/circle.svg';
+    return <Shape src={src} {...props} />;
 };
 
-const Triangle: FC<{ x: number; y: number; scale?: number; rotation?: number; isShow: boolean }> = ({
-    x,
-    y,
-    scale = 0.2,
-    rotation = 0,
-    isShow,
-}) => {
-    const [image] = useImage('/img/hand-drawn/triangle.svg');
-    return (
-        // eslint-disable-next-line jsx-a11y/alt-text
-        <Image
-            image={image}
-            scale={{ x: scale, y: scale }}
-            rotation={rotation}
-            x={x}
-            y={y}
-            opacity={isShow ? 1.0 : 0.0}
-        />
-    );
+const Triangle: FC<shapeType> = (props) => {
+    const src = '/img/hand-drawn/triangle.svg';
+    return <Shape src={src} {...props} />;
 };
 
 const GameCard: FC<Props> = ({
