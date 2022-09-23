@@ -14,13 +14,14 @@ import {
 import { commonFormType } from '../hooks/useCommonForm';
 import { FONT_FAMILY, FONT_FAMILY_NAME } from '../typings';
 
-const CommonFormType: FC<commonFormType> = ({
+const CommonForm: FC<commonFormType> = ({
     nameSize,
     handleNameChange,
     updateNameSize,
     handleFriendCodeChange,
     name,
     friendCode,
+    fontFamily,
     handleFontFamilyChange,
 }) => {
     return (
@@ -75,4 +76,4 @@ const CommonFormType: FC<commonFormType> = ({
     );
 };
 
-export default CommonFormType;
+export default CommonForm;

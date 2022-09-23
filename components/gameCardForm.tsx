@@ -16,7 +16,7 @@ import {
 import { DownloadIcon } from '@chakra-ui/icons';
 import { RANK_LEVEL, VOICE_CHAT, PLAY_RULE, WEAPON_CLASS, WEAPON_TYPE } from '../typings';
 import dynamic from 'next/dynamic';
-import CommonFormType from './commonForm';
+import CommonForm from './commonForm';
 import { commonFormType } from '../hooks/useCommonForm';
 
 const GameCard = dynamic(() => import('./gameCard'), { ssr: false });
@@ -111,7 +111,7 @@ const GameCardForm: FC<Props> = ({
             />
 
             {/* Name &  FriendCode*/}
-            <CommonFormType
+            <CommonForm
                 name={name}
                 friendCode={friendCode}
                 nameSize={nameSize}

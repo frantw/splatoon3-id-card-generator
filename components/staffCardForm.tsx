@@ -14,7 +14,7 @@ import {
 } from '@chakra-ui/react';
 import { DownloadIcon } from '@chakra-ui/icons';
 import dynamic from 'next/dynamic';
-import CommonFormType from './commonForm';
+import CommonForm from './commonForm';
 import { commonFormType } from '../hooks/useCommonForm';
 import { PLAY_TIME, SALMON_RUN_LEVEL, PLAY_STYLE } from '../typings';
 
@@ -94,7 +94,7 @@ const StaffCardForm: FC<Props> = ({
             ></StaffCard>
 
             {/* Name &  FriendCode*/}
-            <CommonFormType
+            <CommonForm
                 name={name}
                 friendCode={friendCode}
                 nameSize={nameSize}
