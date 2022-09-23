@@ -97,12 +97,8 @@ const StaffCard: FC<Props> = ({
                 <CardImage />
                 {/* Friend Code */}
                 <Text
-                    x={450}
-                    y={350}
-                    width={675}
-                    height={80}
-                    align={'center'}
-                    verticalAlign={'middle'}
+                    x={580}
+                    y={365}
                     text={friendCode || 'SW-1234-5678-9999'}
                     fontSize={48}
                     fontFamily={'naikaifont'}
