@@ -29,7 +29,7 @@ const useCommonForm = () => {
         setFriendCode(value);
     };
 
-    const [fontFamily, setFontFamily] = useState(FONT_FAMILY.FAKEPEARL);
+    const [fontFamily, setFontFamily] = useState(FONT_FAMILY.TAIWANPEARL);
     const handleFontFamilyChange = ({ currentTarget: { value } }: ChangeEvent<HTMLInputElement>) => {
         setFontFamily(FONT_FAMILY[value as keyof typeof FONT_FAMILY]);
     };
