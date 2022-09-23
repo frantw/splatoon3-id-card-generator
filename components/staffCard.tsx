@@ -3,13 +3,17 @@ import Konva from 'konva';
 import { Stage, Layer, Text, Image } from 'react-konva';
 import useImage from 'use-image';
 import { downloadURI } from '../utils';
-import { NAME_SIZE } from '../typings';
+import { NAME_SIZE, PLAY_STYLE, PLAY_TIME } from '../typings';
 
 type Props = {
     containerSize: { width: number; height: number };
     name: string;
     nameSize: NAME_SIZE;
     friendCode: string;
+    playTime: Set<PLAY_TIME>;
+    timeMemo: string;
+    salmonRunRankLevel: string;
+    playStyle: Set<PLAY_STYLE>;
     exportRef: MutableRefObject<() => void | null>;
 };
 

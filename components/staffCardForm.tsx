@@ -34,9 +34,15 @@ const StaffCardForm: FC<Props> = ({
 }) => {
     const exportRef = useRef(null) as unknown as MutableRefObject<() => void | null>;
 
-    const [playTime, setPlayTime] = useState(PLAY_TIME.MON);
-    const handlePlayTimeChange = ({ currentTarget: { value } }: ChangeEvent<HTMLInputElement>) => {
-        setPlayTime(PLAY_TIME[value as keyof typeof PLAY_TIME]);
+    const [playTime, setPlayTime] = useState(new Set([PLAY_TIME.MON]));
+    const handlePlayTimeChange = (time: PLAY_TIME) => {
+        if (playTime.has(time)) {
+            playTime.delete(time);
+        } else {
+            playTime.add(time);
+        }
+        setPlayTime(new Set([...playTime]));
+        console.log(playTime);
     };
 
     const [timeMemo, setTimeMemo] = useState('24 小時全年無休！');
@@ -49,9 +55,14 @@ const StaffCardForm: FC<Props> = ({
         setSalmonRunRankLevel(SALMON_RUN_LEVEL[value as keyof typeof SALMON_RUN_LEVEL]);
     };
 
-    const [playStyle, setPlayStyle] = useState(PLAY_STYLE.CASUAL);
-    const handlePlayStyleChange = ({ currentTarget: { value } }: ChangeEvent<HTMLInputElement>) => {
-        setPlayStyle(PLAY_STYLE[value as keyof typeof PLAY_STYLE]);
+    const [playStyle, setPlayStyle] = useState(new Set([PLAY_STYLE.CASUAL]));
+    const handlePlayStyleChange = (style: PLAY_STYLE) => {
+        if (playStyle.has(style)) {
+            playStyle.delete(style);
+        } else {
+            playStyle.add(style);
+        }
+        setPlayStyle(new Set([...playStyle]));
     };
 
     return (
@@ -62,6 +73,10 @@ const StaffCardForm: FC<Props> = ({
                 name={name}
                 nameSize={nameSize}
                 friendCode={friendCode}
+                playTime={playTime}
+                timeMemo={timeMemo}
+                salmonRunRankLevel={salmonRunRankLevel}
+                playStyle={playStyle}
                 exportRef={exportRef}
             ></StaffCard>
 
@@ -81,7 +96,11 @@ const StaffCardForm: FC<Props> = ({
                 <CheckboxGroup defaultValue={['MON']}>
                     <HStack spacing='24px'>
                         {(Object.keys(PLAY_TIME) as (keyof typeof PLAY_TIME)[]).map((playTime) => (
-                            <Checkbox key={playTime} value={playTime} onChange={handlePlayTimeChange}>
+                            <Checkbox
+                                key={playTime}
+                                value={playTime}
+                                onChange={() => handlePlayTimeChange(PLAY_TIME[playTime])}
+                            >
                                 {PLAY_TIME[playTime]}
                             </Checkbox>
                         ))}
@@ -116,7 +135,11 @@ const StaffCardForm: FC<Props> = ({
                     <CheckboxGroup defaultValue={['CASUAL']}>
                         <HStack spacing='24px'>
                             {(Object.keys(PLAY_STYLE) as (keyof typeof PLAY_STYLE)[]).map((playStyle) => (
-                                <Checkbox key={playStyle} value={playStyle} onChange={handlePlayStyleChange}>
+                                <Checkbox
+                                    key={playStyle}
+                                    value={playStyle}
+                                    onChange={() => handlePlayStyleChange(PLAY_STYLE[playStyle])}
+                                >
                                     {PLAY_STYLE[playStyle]}
                                 </Checkbox>
                             ))}
