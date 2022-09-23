@@ -26,23 +26,9 @@ const Home: NextPage = () => {
                 />
                 <link
                     rel='preload'
-                    href='https://cdn.jsdelivr.net/gh/max32002/naikaifont@1.0/webfont/NaikaiFont-Regular-Lite.woff'
-                    as='font'
-                    type='font/woff'
-                    crossOrigin='anonymous'
-                />
-                <link
-                    rel='preload'
                     href='https://cdn.jsdelivr.net/gh/max32002/FakePearl@1.1/webfont/FakePearl-Regular.woff2'
                     as='font'
                     type='font/woff2'
-                    crossOrigin='anonymous'
-                />
-                <link
-                    rel='preload'
-                    href='https://cdn.jsdelivr.net/gh/max32002/FakePearl@1.1/webfont/FakePearl-Regular.woff'
-                    as='font'
-                    type='font/woff'
                     crossOrigin='anonymous'
                 />
                 <link
@@ -54,13 +40,6 @@ const Home: NextPage = () => {
                 />
                 <link
                     rel='preload'
-                    href='https://cdn.jsdelivr.net/gh/max32002/TaiwanPearl@2.125/webfont/TaiwanPearl-Regular.woff'
-                    as='font'
-                    type='font/woff'
-                    crossOrigin='anonymous'
-                />
-                <link
-                    rel='preload'
                     href='https://cdn.jsdelivr.net/gh/max32002/nanifont@1.036/webfont/NaniFont-Regular.woff2'
                     as='font'
                     type='font/woff2'
@@ -68,23 +47,9 @@ const Home: NextPage = () => {
                 />
                 <link
                     rel='preload'
-                    href='https://cdn.jsdelivr.net/gh/max32002/nanifont@1.036/webfont/NaniFont-Regular.woff'
-                    as='font'
-                    type='font/woff'
-                    crossOrigin='anonymous'
-                />
-                <link
-                    rel='preload'
                     href='https://cdn.jsdelivr.net/gh/max32002/JasonHandWritingFonts@20220828/webfont/JasonHandwriting1-SemiBold.woff2'
                     as='font'
                     type='font/woff2'
-                    crossOrigin='anonymous'
-                />
-                <link
-                    rel='preload'
-                    href='https://cdn.jsdelivr.net/gh/max32002/JasonHandWritingFonts@20220828/webfont/JasonHandwriting1-SemiBold.woff'
-                    as='font'
-                    type='font/woff'
                     crossOrigin='anonymous'
                 />
                 <link rel='icon' href='/favicon.ico' />
