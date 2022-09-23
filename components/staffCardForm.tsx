@@ -104,12 +104,14 @@ const StaffCardForm: FC<Props> = ({
             <FormControl mt={6} as='fieldset'>
                 <FormLabel as='legend'>排班時間</FormLabel>
                 <CheckboxGroup defaultValue={['MON']}>
-                    <HStack spacing='24px'>
+                    <HStack spacing='0' wrap={'wrap'}>
                         {(Object.keys(PLAY_TIME) as (keyof typeof PLAY_TIME)[]).map((playTime) => (
                             <Checkbox
                                 key={playTime}
                                 value={playTime}
                                 onChange={() => handlePlayTimeChange(PLAY_TIME[playTime])}
+                                px={'12px'}
+                                py={{ md: '0', sm: '0', base: '8px' }}
                             >
                                 {PLAY_TIME[playTime]}
                             </Checkbox>
@@ -124,7 +126,7 @@ const StaffCardForm: FC<Props> = ({
                 <Input type='text' maxLength={28} onChange={handleTimeMemoChange} />
             </FormControl>
 
-            <SimpleGrid columns={2} spacing={10}>
+            <SimpleGrid columns={{ md: 2, sm: 2, base: 1 }} spacing={{ md: 10, sm: 10, base: 0 }}>
                 {/* Salmon Run Level */}
                 <FormControl mt={6}>
                     <FormLabel>最高評價</FormLabel>
