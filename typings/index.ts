@@ -42,3 +42,31 @@ export enum PLAY_RULE {
     TOWER_CONTROL = '真格塔樓',
     CLAM_BLITZ = '真格蛤蜊',
 }
+
+export enum PLAY_TIME {
+    MON = '星期一',
+    TUE = '星期二',
+    WED = '星期三',
+    THU = '星期四',
+    FRI = '星期五',
+    SAT = '星期六',
+    SUN = '星期天',
+}
+
+export enum SALMON_RUN_LEVEL {
+    APPRENTICE = '新手打工仔',
+    PART_TIMER= '半吊子打工仔',
+    GO_GETTER = '獨當一面打工仔',
+    OVERACHIEVER = '熟練打工仔',
+    PROFRESHIONAL = '達人打工仔',
+    PROFRESHIONAL_PLUS_1 = '達人+1 打工仔',
+    PROFRESHIONAL_PLUS_2 = '達人+2 打工仔',
+    PROFRESHIONAL_PLUS_3 = '達人+3 打工仔',
+    EGGSECUTIVE_VP = '傳說打工仔',
+}
+
+export enum PLAY_STYLE {
+    CASUAL = '休閒型',
+    HARDCORE = '挑戰型',
+    CARRY_ME_PLZ = '前輩帶我飛',
+}
