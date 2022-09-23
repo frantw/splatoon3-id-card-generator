@@ -1,5 +1,5 @@
 import { useState, ChangeEvent } from 'react';
-import { NAME_SIZE, FONT_FAMILY } from '../typings';
+import { NAME_SIZE } from '../typings';
 
 export type commonFormType = {
     name: string;

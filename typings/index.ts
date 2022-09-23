@@ -10,7 +10,7 @@ export enum FONT_FAMILY {
 
 export enum FONT_FAMILY_NAME {
     TAIWANPEARL = '台灣圓體',
-    FAKEPEARL = '假粉圓體', 
+    FAKEPEARL = '假粉圓體',
     NAIKAIFONT = '內海字體',
     NANIFONT = '何某手寫體',
     JASONHANDWRITING = '清松手寫體',
