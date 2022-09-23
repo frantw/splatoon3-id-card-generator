@@ -12,7 +12,7 @@ import {
     CheckboxGroup,
     FormHelperText,
 } from '@chakra-ui/react';
-import { DownloadIcon, AddIcon } from '@chakra-ui/icons';
+import { DownloadIcon } from '@chakra-ui/icons';
 import dynamic from 'next/dynamic';
 import ProfileForm from './profileForm';
 import { profileType } from '../hooks/useProfile';
@@ -162,7 +162,7 @@ const StaffCardForm: FC<Props> = ({
             <FormControl mt={6}>
                 <FormLabel>員工照片</FormLabel>
                 <Input type='file' accept='image/*' onChange={handleUpload} />
-                <FormHelperText textAlign='left'>建議尺寸大於 625 x 625 並自行裁剪</FormHelperText>
+                <FormHelperText textAlign='left'>建議尺寸大於 625 x 625 並自行裁剪方形</FormHelperText>
             </FormControl>
 
             {/* Download */}

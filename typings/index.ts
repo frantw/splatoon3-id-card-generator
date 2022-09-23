@@ -60,7 +60,7 @@ export enum PLAY_TIME {
 
 export enum SALMON_RUN_LEVEL {
     APPRENTICE = '新手打工仔',
-    PART_TIMER= '半吊子打工仔',
+    PART_TIMER = '半吊子打工仔',
     GO_GETTER = '獨當一面打工仔',
     OVERACHIEVER = '熟練打工仔',
     PROFRESHIONAL = '達人打工仔',
