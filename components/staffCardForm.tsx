@@ -10,8 +10,9 @@ import {
     Button,
     Checkbox,
     CheckboxGroup,
+    FormHelperText,
 } from '@chakra-ui/react';
-import { DownloadIcon } from '@chakra-ui/icons';
+import { DownloadIcon, AddIcon } from '@chakra-ui/icons';
 import dynamic from 'next/dynamic';
 import ProfileForm from './profileForm';
 import { profileType } from '../hooks/useProfile';
@@ -63,12 +64,22 @@ const StaffCardForm: FC<Props> = ({
         }
         setPlayStyle(new Set([...playStyle]));
     };
+    const [avatarImage, setAvatarImage] = useState<null | HTMLImageElement>(null);
+    const handleUpload = (e: ChangeEvent<HTMLInputElement>) => {
+        if (!!e.target.files?.length) {
+            const uri = URL.createObjectURL(e.target.files[0]);
+            const image = new Image();
+            image.src = uri;
+            setAvatarImage(image);
+        }
+    };
 
     return (
         <Box>
             {/* Card Preview */}
             <StaffCard
                 containerSize={containerSize}
+                avatarImage={avatarImage}
                 name={name}
                 nameSize={nameSize}
                 friendCode={friendCode}
@@ -146,6 +157,13 @@ const StaffCardForm: FC<Props> = ({
                     </CheckboxGroup>
                 </FormControl>
             </SimpleGrid>
+
+            {/* Avatar */}
+            <FormControl mt={6}>
+                <FormLabel>員工照片</FormLabel>
+                <Input type='file' accept='image/*' onChange={handleUpload} />
+                <FormHelperText textAlign='left'>建議尺寸大於 625 x 625 並自行裁剪</FormHelperText>
+            </FormControl>
 
             {/* Download */}
             <Button colorScheme='purple' mt={30} leftIcon={<DownloadIcon />} onClick={() => exportRef.current()}>

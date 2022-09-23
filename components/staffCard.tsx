@@ -1,13 +1,15 @@
 import React, { FC, useMemo, useRef, useEffect, MutableRefObject } from 'react';
 import Konva from 'konva';
-import { Stage, Layer, Text, Image } from 'react-konva';
+import { Stage, Layer, Text, Image, Group } from 'react-konva';
 import useImage from 'use-image';
 import Shape, { shapeType } from './shape';
 import { downloadURI } from '../utils';
 import { NAME_SIZE, PLAY_STYLE, PLAY_TIME, CARD_NAME } from '../typings';
+import { SceneContext } from 'konva/lib/Context';
 
 type Props = {
     containerSize: { width: number; height: number };
+    avatarImage: null | HTMLImageElement;
     name: string;
     nameSize: NAME_SIZE;
     friendCode: string;
@@ -32,8 +34,29 @@ const CheckMark: FC<shapeType> = (props) => {
     return <Shape src={src} {...props} />;
 };
 
+const AvatarExampleImage: FC = () => {
+    const [image] = useImage('/img/avatar-example.png');
+    return <Image image={image} width={625} height={625} x={1206} y={360} alt='avatar example' />;
+};
+
+const clipRoundSquare = (ctx: SceneContext, x: number, y: number, size: number, radius: number) => {
+    ctx.beginPath();
+    ctx.moveTo(x + radius, y);
+    ctx.lineTo(x + size - radius, y);
+    ctx.quadraticCurveTo(x + size, y, x + size, y + radius);
+    ctx.lineTo(x + size, y + size - radius);
+    ctx.quadraticCurveTo(x + size, y + size, x + size - radius, y + size);
+    ctx.lineTo(x + radius, y + size);
+    ctx.quadraticCurveTo(x, y + size, x, y + size - radius);
+    ctx.lineTo(x, y + radius);
+    ctx.quadraticCurveTo(x, y, x + radius, y);
+    ctx.closePath();
+    ctx.fill();
+};
+
 const StaffCard: FC<Props> = ({
     containerSize,
+    avatarImage,
     name,
     nameSize,
     friendCode,
@@ -72,7 +95,6 @@ const StaffCard: FC<Props> = ({
         <Stage ref={stageRef} width={containerSize.width} height={sceneHeight * scale} scale={{ x: scale, y: scale }}>
             <Layer>
                 <CardImage />
-
                 {/* Friend Code */}
                 <Text
                     x={450}
@@ -86,7 +108,6 @@ const StaffCard: FC<Props> = ({
                     fontFamily={'naikaifont'}
                     fill={fontColor}
                 />
-
                 {/* Name */}
                 <Text
                     x={450}
@@ -100,7 +121,6 @@ const StaffCard: FC<Props> = ({
                     fontFamily={'naikaifont'}
                     fill={fontColor}
                 />
-
                 {/*  Play Time */}
                 <CheckMark x={468} y={580} scale={0.18} isShow={playTime.has(PLAY_TIME.MON)} />
                 <CheckMark x={562} y={581} scale={0.18} isShow={playTime.has(PLAY_TIME.TUE)} />
@@ -109,7 +129,6 @@ const StaffCard: FC<Props> = ({
                 <CheckMark x={862} y={580} scale={0.18} isShow={playTime.has(PLAY_TIME.FRI)} />
                 <CheckMark x={961} y={581} scale={0.18} isShow={playTime.has(PLAY_TIME.SAT)} />
                 <CheckMark x={1058} y={580} scale={0.18} isShow={playTime.has(PLAY_TIME.SUN)} />
-
                 {/*  Time Memo */}
                 <Text
                     x={450}
@@ -123,7 +142,6 @@ const StaffCard: FC<Props> = ({
                     fontFamily={'naikaifont'}
                     fill={fontColor}
                 />
-
                 {/*  Salmon Run Rank Level */}
                 <Text
                     x={450}
@@ -137,11 +155,19 @@ const StaffCard: FC<Props> = ({
                     fontFamily={'naikaifont'}
                     fill={fontColor}
                 />
-
                 {/* Play Style */}
                 <CheckMark x={458} y={915} scale={0.15} isShow={playStyle.has(PLAY_STYLE.CASUAL)} />
                 <CheckMark x={662} y={916} scale={0.15} isShow={playStyle.has(PLAY_STYLE.HARDCORE)} />
                 <CheckMark x={868} y={916} scale={0.15} isShow={playStyle.has(PLAY_STYLE.CARRY_ME_PLZ)} />
+
+                {/* Photo */}
+                <Group clipFunc={(ctx) => clipRoundSquare(ctx, 1211.5, 366, 615, 10)}>
+                    {avatarImage ? (
+                        <Image image={avatarImage} width={625} height={625} x={1206} y={360} alt='avatar' />
+                    ) : (
+                        <AvatarExampleImage />
+                    )}
+                </Group>
             </Layer>
         </Stage>
     );
