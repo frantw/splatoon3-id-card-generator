@@ -1,6 +1,6 @@
 import { Stack, Tab, Tabs, TabList, TabPanel, TabPanels, useColorModeValue } from '@chakra-ui/react';
-import Form from './form';
-import { CARD_TYPE } from '../typings';
+import GameCardForm from './gameCardForm';
+import StaffCardForm from './staffCardForm';
 
 const Center = () => {
     return (
@@ -29,10 +29,10 @@ const Center = () => {
                     </TabList>
                     <TabPanels>
                         <TabPanel px={0}>
-                            <Form cardType={CARD_TYPE.GAME_CARD}></Form>
+                            <GameCardForm />
                         </TabPanel>
                         <TabPanel px={0}>
-                            <Form cardType={CARD_TYPE.STAFF_CARD}></Form>
+                            <StaffCardForm />
                         </TabPanel>
                     </TabPanels>
                 </Tabs>
