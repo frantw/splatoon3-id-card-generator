@@ -4,6 +4,7 @@ import { Stage, Layer, Text, Image } from 'react-konva';
 import useImage from 'use-image';
 import { VOICE_CHAT, PLAY_RULE } from '../typings';
 import Shape, { shapeType } from './shape';
+import { downloadURI } from '../utils';
 
 type Props = {
     containerSize: { width: number; height: number };
@@ -22,15 +23,6 @@ type Props = {
 const sceneWidth = 1920;
 const sceneHeight = 1080;
 const fontColor = '#5c4c42';
-
-const downloadURI = (uri: string) => {
-    const link = document.createElement('a');
-    link.download = 'splatoon3-game-card.png';
-    link.href = uri;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-};
 
 const CardImage: FC = () => {
     const [image] = useImage('/img/template/game-card.png');
@@ -61,7 +53,6 @@ const GameCard: FC<Props> = ({
     exportRef,
 }) => {
     const stageRef = useRef<Konva.Stage>(null);
-
     const scale = useMemo(() => containerSize.width / sceneWidth, [containerSize]);
 
     const date = new Date().toLocaleDateString();
@@ -76,7 +67,7 @@ const GameCard: FC<Props> = ({
         const uri = stage.toDataURL();
         stage.size(prevSize);
         stage.scale(prevScale);
-        downloadURI(uri);
+        downloadURI(uri, 'splatoon3-game-card.png');
     };
 
     useEffect(() => {

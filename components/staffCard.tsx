@@ -2,6 +2,7 @@ import React, { FC, useMemo, useRef, useEffect, MutableRefObject } from 'react';
 import Konva from 'konva';
 import { Stage, Layer, Text, Image } from 'react-konva';
 import useImage from 'use-image';
+import { downloadURI } from '../utils';
 
 type Props = {
     containerSize: { width: number; height: number };
@@ -12,15 +13,6 @@ type Props = {
 
 const sceneWidth = 1920;
 const sceneHeight = 1080;
-
-const downloadURI = (uri: string) => {
-    const link = document.createElement('a');
-    link.download = 'splatoon3-staff-card.png';
-    link.href = uri;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-};
 
 const CardImage: FC = () => {
     const [image] = useImage('/img/template/staff-card.png');
@@ -41,7 +33,7 @@ const StaffCard: FC<Props> = ({ containerSize, name, friendCode, exportRef }) =>
         const uri = stage.toDataURL();
         stage.size(prevSize);
         stage.scale(prevScale);
-        downloadURI(uri);
+        downloadURI(uri, 'splatoon3-staff-card.png');
     };
 
     useEffect(() => {
