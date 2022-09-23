@@ -16,24 +16,24 @@ import {
 import { DownloadIcon } from '@chakra-ui/icons';
 import { RANK_LEVEL, VOICE_CHAT, PLAY_RULE, WEAPON_CLASS, WEAPON_TYPE } from '../typings';
 import dynamic from 'next/dynamic';
+import ProfileForm from './profileForm';
+import { profileType } from '../hooks/useProfile';
 
 const GameCard = dynamic(() => import('./gameCard'), { ssr: false });
 
 type Props = {
     containerSize: { width: number; height: number };
-};
+} & profileType;
 
-const GameCardForm: FC<Props> = ({ containerSize }) => {
-    const [name, setName] = useState('さくら');
-    const handleNameChange = ({ currentTarget: { value } }: ChangeEvent<HTMLInputElement>) => {
-        setName(value);
-    };
-
-    const [friendCode, setFriendCode] = useState('SW-1234-5678-9999');
-    const handleFriendCodeChange = ({ currentTarget: { value } }: ChangeEvent<HTMLInputElement>) => {
-        setFriendCode(value);
-    };
-
+const GameCardForm: FC<Props> = ({
+    containerSize,
+    name,
+    nameSize,
+    friendCode,
+    handleNameChange,
+    updateNameSize,
+    handleFriendCodeChange,
+}) => {
     const [weaponList, setWeaponList] = useState({});
     const handleWeaponClassChange = ({ currentTarget: { value } }: ChangeEvent<HTMLSelectElement>) => {
         if (!value) {
@@ -91,9 +91,11 @@ const GameCardForm: FC<Props> = ({ containerSize }) => {
 
     return (
         <Box>
+            {/* Card Preview */}
             <GameCard
                 containerSize={containerSize}
                 name={name}
+                nameSize={nameSize}
                 friendCode={friendCode}
                 favoriteWeapon={favoriteWeapon}
                 level={level}
@@ -103,25 +105,17 @@ const GameCardForm: FC<Props> = ({ containerSize }) => {
                 acceptablePlayRules={acceptablePlayRules as Set<PLAY_RULE>}
                 memo={memo}
                 exportRef={exportRef}
-            ></GameCard>
+            />
 
-            <SimpleGrid columns={2} spacing={10}>
-                {/* Name */}
-                <FormControl mt={6}>
-                    <FormLabel>你的名字</FormLabel>
-                    <Input type='text' maxLength={10} onChange={handleNameChange} />
-                </FormControl>
-                {/* Friend Code */}
-                <FormControl mt={6}>
-                    <FormLabel>好友代碼</FormLabel>
-                    <Input
-                        type='text'
-                        maxLength={17}
-                        placeholder='SW-1234-5678-9999'
-                        onChange={handleFriendCodeChange}
-                    />
-                </FormControl>
-            </SimpleGrid>
+            {/* Name &  FriendCode*/}
+            <ProfileForm
+                name={name}
+                friendCode={friendCode}
+                nameSize={nameSize}
+                handleNameChange={handleNameChange}
+                updateNameSize={updateNameSize}
+                handleFriendCodeChange={handleFriendCodeChange}
+            />
 
             <Grid templateColumns='repeat(4, 1fr)' gap={10}>
                 <GridItem colSpan={2}>

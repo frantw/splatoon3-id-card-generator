@@ -3,10 +3,12 @@ import Konva from 'konva';
 import { Stage, Layer, Text, Image } from 'react-konva';
 import useImage from 'use-image';
 import { downloadURI } from '../utils';
+import { NAME_SIZE } from '../typings';
 
 type Props = {
     containerSize: { width: number; height: number };
     name: string;
+    nameSize: NAME_SIZE;
     friendCode: string;
     exportRef: MutableRefObject<() => void | null>;
 };
@@ -19,7 +21,7 @@ const CardImage: FC = () => {
     return <Image image={image} alt='splatoon3 staff card' />;
 };
 
-const StaffCard: FC<Props> = ({ containerSize, name, friendCode, exportRef }) => {
+const StaffCard: FC<Props> = ({ containerSize, name, nameSize, friendCode, exportRef }) => {
     const stageRef = useRef<Konva.Stage>(null);
     const scale = useMemo(() => containerSize.width / sceneWidth, [containerSize]);
 

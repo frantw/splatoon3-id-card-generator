@@ -2,13 +2,14 @@ import React, { FC, useMemo, useRef, useEffect, MutableRefObject } from 'react';
 import Konva from 'konva';
 import { Stage, Layer, Text, Image } from 'react-konva';
 import useImage from 'use-image';
-import { VOICE_CHAT, PLAY_RULE } from '../typings';
+import { NAME_SIZE, VOICE_CHAT, PLAY_RULE } from '../typings';
 import Shape, { shapeType } from './shape';
 import { downloadURI } from '../utils';
 
 type Props = {
     containerSize: { width: number; height: number };
     name: string;
+    nameSize: NAME_SIZE;
     friendCode: string;
     favoriteWeapon: string;
     level: string;
@@ -42,6 +43,7 @@ const Triangle: FC<shapeType> = (props) => {
 const GameCard: FC<Props> = ({
     containerSize,
     name,
+    nameSize,
     friendCode,
     favoriteWeapon,
     level,
@@ -54,6 +56,10 @@ const GameCard: FC<Props> = ({
 }) => {
     const stageRef = useRef<Konva.Stage>(null);
     const scale = useMemo(() => containerSize.width / sceneWidth, [containerSize]);
+
+    const nameFontSize = useMemo(() => {
+        return nameSize === NAME_SIZE.SMALL ? 48 : nameSize === NAME_SIZE.MEDIUM ? 64 : 80;
+    }, [nameSize]);
 
     const date = new Date().toLocaleDateString();
 
@@ -88,14 +94,21 @@ const GameCard: FC<Props> = ({
                     height={80}
                     align={'center'}
                     verticalAlign={'middle'}
-                    text={name}
-                    fontSize={48}
+                    text={name || 'さくら'}
+                    fontSize={nameFontSize}
                     fontFamily={'naikaifont'}
                     fill={fontColor}
                 />
 
                 {/* Friend Code */}
-                <Text x={368} y={253} text={friendCode} fontSize={36} fontFamily={'naikaifont'} fill={fontColor} />
+                <Text
+                    x={368}
+                    y={253}
+                    text={friendCode || 'SW-1234-5678-9999'}
+                    fontSize={36}
+                    fontFamily={'naikaifont'}
+                    fill={fontColor}
+                />
 
                 {/* Favorite Weapon */}
                 <Text
@@ -106,7 +119,7 @@ const GameCard: FC<Props> = ({
                     align={'center'}
                     verticalAlign={'middle'}
                     text={favoriteWeapon}
-                    fontSize={36}
+                    fontSize={48}
                     fontFamily={'naikaifont'}
                     fill={fontColor}
                 />

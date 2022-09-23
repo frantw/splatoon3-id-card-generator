@@ -1,5 +1,11 @@
 export * from './weapons.constant';
 
+export enum NAME_SIZE {
+    SMALL = '字體小',
+    MEDIUM = '字體中',
+    LARGE = '字體大',
+}
+
 export enum CARD_TYPE {
     GAME_CARD = 'game-card',
     STAFF_CARD = 'staff-card',

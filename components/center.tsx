@@ -2,9 +2,11 @@ import { Stack, Tab, Tabs, TabList, TabPanel, TabPanels, useColorModeValue } fro
 import GameCardForm from './gameCardForm';
 import StaffCardForm from './staffCardForm';
 import useElementSize from '../hooks/useElementSize';
+import useProfile from '../hooks/useProfile';
 
 const Center = () => {
     const { elementRef: containerRef, elementSize: containerSize } = useElementSize();
+    const { name, handleNameChange, nameSize, updateNameSize, friendCode, handleFriendCodeChange } = useProfile();
     return (
         <Stack
             textAlign={'center'}
@@ -31,10 +33,26 @@ const Center = () => {
                     </TabList>
                     <TabPanels ref={containerRef}>
                         <TabPanel px={0}>
-                            <GameCardForm containerSize={containerSize} />
+                            <GameCardForm
+                                containerSize={containerSize}
+                                name={name}
+                                nameSize={nameSize}
+                                friendCode={friendCode}
+                                handleNameChange={handleNameChange}
+                                updateNameSize={updateNameSize}
+                                handleFriendCodeChange={handleFriendCodeChange}
+                            />
                         </TabPanel>
                         <TabPanel px={0}>
-                            <StaffCardForm containerSize={containerSize} />
+                            <StaffCardForm
+                                containerSize={containerSize}
+                                name={name}
+                                nameSize={nameSize}
+                                friendCode={friendCode}
+                                handleNameChange={handleNameChange}
+                                updateNameSize={updateNameSize}
+                                handleFriendCodeChange={handleFriendCodeChange}
+                            />
                         </TabPanel>
                     </TabPanels>
                 </Tabs>

@@ -1,53 +1,47 @@
-import React, { FC, useState, useRef, ChangeEvent, MutableRefObject } from 'react';
-import { Box, FormControl, FormLabel, Input, SimpleGrid, Button } from '@chakra-ui/react';
+import React, { FC, useRef, MutableRefObject } from 'react';
+import { Box, Button } from '@chakra-ui/react';
 import { DownloadIcon } from '@chakra-ui/icons';
 import dynamic from 'next/dynamic';
+import ProfileForm from './profileForm';
+import { profileType } from '../hooks/useProfile';
 
 const StaffCard = dynamic(() => import('./staffCard'), { ssr: false });
 
 type Props = {
     containerSize: { width: number; height: number };
-};
+} & profileType;
 
-const StaffCardForm: FC<Props> = ({ containerSize }) => {
-    const [name, setName] = useState('さくら');
-    const handleNameChange = ({ currentTarget: { value } }: ChangeEvent<HTMLInputElement>) => {
-        setName(value);
-    };
-
-    const [friendCode, setFriendCode] = useState('SW-1234-5678-9999');
-    const handleFriendCodeChange = ({ currentTarget: { value } }: ChangeEvent<HTMLInputElement>) => {
-        setFriendCode(value);
-    };
-
+const StaffCardForm: FC<Props> = ({
+    containerSize,
+    name,
+    nameSize,
+    friendCode,
+    handleNameChange,
+    updateNameSize,
+    handleFriendCodeChange,
+}) => {
     const exportRef = useRef(null) as unknown as MutableRefObject<() => void | null>;
 
     return (
         <Box>
+            {/* Card Preview */}
             <StaffCard
                 containerSize={containerSize}
                 name={name}
+                nameSize={nameSize}
                 friendCode={friendCode}
                 exportRef={exportRef}
             ></StaffCard>
 
-            <SimpleGrid columns={2} spacing={10}>
-                {/* Name */}
-                <FormControl mt={6}>
-                    <FormLabel>你的名字</FormLabel>
-                    <Input type='text' maxLength={10} onChange={handleNameChange} />
-                </FormControl>
-                {/* Friend Code */}
-                <FormControl mt={6}>
-                    <FormLabel>好友代碼</FormLabel>
-                    <Input
-                        type='text'
-                        maxLength={17}
-                        placeholder='SW-1234-5678-9999'
-                        onChange={handleFriendCodeChange}
-                    />
-                </FormControl>
-            </SimpleGrid>
+            {/* Name &  FriendCode*/}
+            <ProfileForm
+                name={name}
+                friendCode={friendCode}
+                nameSize={nameSize}
+                handleNameChange={handleNameChange}
+                updateNameSize={updateNameSize}
+                handleFriendCodeChange={handleFriendCodeChange}
+            />
 
             {/* TODO: staff card form */}
 

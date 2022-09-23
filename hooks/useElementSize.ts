@@ -26,7 +26,7 @@ const useElementSize = () => {
         return () => window.removeEventListener('resize', updateElementSize);
     }, []);
 
-    return {elementRef, elementSize};
+    return { elementRef, elementSize };
 };
 
 export default useElementSize;
