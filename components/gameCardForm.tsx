@@ -19,7 +19,11 @@ import dynamic from 'next/dynamic';
 
 const GameCard = dynamic(() => import('./gameCard'), { ssr: false });
 
-const GameCardForm: FC = () => {
+type Props = {
+    containerSize: { width: number; height: number };
+};
+
+const GameCardForm: FC<Props> = ({ containerSize }) => {
     const [name, setName] = useState('さくら');
     const handleNameChange = ({ currentTarget: { value } }: ChangeEvent<HTMLInputElement>) => {
         setName(value);
@@ -88,6 +92,7 @@ const GameCardForm: FC = () => {
     return (
         <Box>
             <GameCard
+                containerSize={containerSize}
                 name={name}
                 friendCode={friendCode}
                 favoriteWeapon={favoriteWeapon}

@@ -1,8 +1,10 @@
 import { Stack, Tab, Tabs, TabList, TabPanel, TabPanels, useColorModeValue } from '@chakra-ui/react';
 import GameCardForm from './gameCardForm';
 import StaffCardForm from './staffCardForm';
+import useElementSize from '../hooks/useElementSize';
 
 const Center = () => {
+    const { elementRef: containerRef, elementSize: containerSize } = useElementSize();
     return (
         <Stack
             textAlign={'center'}
@@ -27,12 +29,12 @@ const Center = () => {
                         <Tab>遊戲名片</Tab>
                         <Tab>打工員工證</Tab>
                     </TabList>
-                    <TabPanels>
+                    <TabPanels ref={containerRef}>
                         <TabPanel px={0}>
-                            <GameCardForm />
+                            <GameCardForm containerSize={containerSize} />
                         </TabPanel>
                         <TabPanel px={0}>
-                            <StaffCardForm />
+                            <StaffCardForm containerSize={containerSize} />
                         </TabPanel>
                     </TabPanels>
                 </Tabs>

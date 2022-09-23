@@ -1,10 +1,10 @@
-import React, { FC, useState, useLayoutEffect, useMemo, useRef, useEffect, MutableRefObject } from 'react';
+import React, { FC, useMemo, useRef, useEffect, MutableRefObject } from 'react';
 import Konva from 'konva';
 import { Stage, Layer, Text, Image } from 'react-konva';
 import useImage from 'use-image';
-import { Box } from '@chakra-ui/react';
 
 type Props = {
+    containerSize: { width: number; height: number };
     name: string;
     friendCode: string;
     exportRef: MutableRefObject<() => void | null>;
@@ -27,19 +27,9 @@ const CardImage: FC = () => {
     return <Image image={image} alt='splatoon3 staff card' />;
 };
 
-const StaffCard: FC<Props> = ({ name, friendCode, exportRef }) => {
+const StaffCard: FC<Props> = ({ containerSize, name, friendCode, exportRef }) => {
     const stageRef = useRef<Konva.Stage>(null);
-    const containerRef = useRef<HTMLDivElement>(null);
-    const [containerWidth, setContainerWidth] = useState(0);
-    const [containerHeight, setContainerHeight] = useState(0);
-
-    useLayoutEffect(() => {
-        setContainerWidth(containerRef.current?.offsetWidth || 0);
-        setContainerHeight(containerRef.current?.offsetHeight || 0);
-    }, []);
-
-    // TODO: window resize
-    const scale = useMemo(() => containerWidth / sceneWidth, [containerWidth]);
+    const scale = useMemo(() => containerSize.width / sceneWidth, [containerSize]);
 
     const handleExport = () => {
         if (!stageRef.current) return;
@@ -60,13 +50,11 @@ const StaffCard: FC<Props> = ({ name, friendCode, exportRef }) => {
     }, []);
 
     return (
-        <Box ref={containerRef}>
-            <Stage ref={stageRef} width={containerWidth} height={sceneHeight * scale} scale={{ x: scale, y: scale }}>
-                <Layer>
-                    <CardImage />
-                </Layer>
-            </Stage>
-        </Box>
+        <Stage ref={stageRef} width={containerSize.width} height={sceneHeight * scale} scale={{ x: scale, y: scale }}>
+            <Layer>
+                <CardImage />
+            </Layer>
+        </Stage>
     );
 };
 

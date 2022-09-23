@@ -5,7 +5,11 @@ import dynamic from 'next/dynamic';
 
 const StaffCard = dynamic(() => import('./staffCard'), { ssr: false });
 
-const StaffCardForm: FC = () => {
+type Props = {
+    containerSize: { width: number; height: number };
+};
+
+const StaffCardForm: FC<Props> = ({ containerSize }) => {
     const [name, setName] = useState('さくら');
     const handleNameChange = ({ currentTarget: { value } }: ChangeEvent<HTMLInputElement>) => {
         setName(value);
@@ -20,7 +24,12 @@ const StaffCardForm: FC = () => {
 
     return (
         <Box>
-            <StaffCard name={name} friendCode={friendCode} exportRef={exportRef}></StaffCard>
+            <StaffCard
+                containerSize={containerSize}
+                name={name}
+                friendCode={friendCode}
+                exportRef={exportRef}
+            ></StaffCard>
 
             <SimpleGrid columns={2} spacing={10}>
                 {/* Name */}
