@@ -1,11 +1,13 @@
 export * from './weapons.constant';
 
 export enum FONT_FAMILY {
+    TAIWANPEARL = 'taiwanpearl',
     FAKEPEARL = 'fakepearl',
     NAIKAIFONT = 'naikaifont',
 }
 
 export enum FONT_FAMILY_NAME {
+    TAIWANPEARL = '台灣圓體',
     FAKEPEARL = '假粉圓體', 
     NAIKAIFONT = '內海字體',
 }

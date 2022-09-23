@@ -55,7 +55,7 @@ const CommonFormType: FC<commonFormType> = ({
             {/* Voice Chat */}
             <FormControl mt={6} as='fieldset'>
                 <FormLabel as='legend'>文字字體</FormLabel>
-                <RadioGroup defaultValue={'FAKEPEARL'}>
+                <RadioGroup defaultValue={'TAIWANPEARL'}>
                     <HStack spacing='0' wrap={'wrap'}>
                         {(Object.keys(FONT_FAMILY_NAME) as (keyof typeof FONT_FAMILY)[]).map((fontFamily) => (
                             <Radio
