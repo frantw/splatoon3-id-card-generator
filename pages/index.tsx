@@ -52,6 +52,7 @@ const Home: NextPage = () => {
                     type='font/woff2'
                     crossOrigin='anonymous'
                 />
+                <link rel='preload' href='/img/template/game-card.png' as='image' />
                 <link rel='icon' href='/favicon.ico' />
                 <meta property='og:type' content='website' />
                 <meta property='og:title' content='Splatoon 3 名片產生器' />
