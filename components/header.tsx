@@ -24,7 +24,7 @@ const Header = () => {
                 </Text>
             </Heading>
             <Text color={'gray.500'} maxW={'4xl'}>
-                Nintendo Switch《 斯普拉遁3（Splatoon 3）》之{' '}
+                Nintendo Switch《 斯普拉遁 3（Splatoon 3）》之{' '}
                 <Text as={'span'} position={'relative'} color={'#7D7DFA'}>
                     {CARD_NAME.GAME_CARD}
                 </Text>{' '}
