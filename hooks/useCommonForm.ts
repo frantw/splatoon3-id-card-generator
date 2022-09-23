@@ -1,7 +1,7 @@
 import { useState, ChangeEvent } from 'react';
 import { NAME_SIZE, FONT_FAMILY } from '../typings';
 
-export type profileType = {
+export type commonFormType = {
     name: string;
     friendCode: string;
     handleNameChange: ({ currentTarget: { value } }: ChangeEvent<HTMLInputElement>) => void;
@@ -12,7 +12,7 @@ export type profileType = {
     handleFontFamilyChange: ({ currentTarget: { value } }: ChangeEvent<HTMLInputElement>) => void;
 };
 
-const useProfile = () => {
+const useCommonForm = () => {
     const [name, setName] = useState('');
     const handleNameChange = ({ currentTarget: { value } }: ChangeEvent<HTMLInputElement>) => {
         setName(value);
@@ -38,4 +38,4 @@ const useProfile = () => {
     return { name, nameSize, handleNameChange, updateNameSize, friendCode, handleFriendCodeChange, fontFamily, handleFontFamilyChange };
 };
 
-export default useProfile;
+export default useCommonForm;

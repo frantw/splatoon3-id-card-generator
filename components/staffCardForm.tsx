@@ -14,15 +14,15 @@ import {
 } from '@chakra-ui/react';
 import { DownloadIcon } from '@chakra-ui/icons';
 import dynamic from 'next/dynamic';
-import ProfileForm from './profileForm';
-import { profileType } from '../hooks/useProfile';
+import CommonFormType from './commonForm';
+import { commonFormType } from '../hooks/useCommonForm';
 import { PLAY_TIME, SALMON_RUN_LEVEL, PLAY_STYLE } from '../typings';
 
 const StaffCard = dynamic(() => import('./staffCard'), { ssr: false });
 
 type Props = {
     containerSize: { width: number; height: number };
-} & profileType;
+} & commonFormType;
 
 const StaffCardForm: FC<Props> = ({
     containerSize,
@@ -94,7 +94,7 @@ const StaffCardForm: FC<Props> = ({
             ></StaffCard>
 
             {/* Name &  FriendCode*/}
-            <ProfileForm
+            <CommonFormType
                 name={name}
                 friendCode={friendCode}
                 nameSize={nameSize}

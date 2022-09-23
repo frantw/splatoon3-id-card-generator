@@ -2,12 +2,12 @@ import { Stack, Tab, Tabs, TabList, TabPanel, TabPanels, useColorModeValue } fro
 import GameCardForm from './gameCardForm';
 import StaffCardForm from './staffCardForm';
 import useElementSize from '../hooks/useElementSize';
-import useProfile from '../hooks/useProfile';
+import useCommonForm from '../hooks/useCommonForm';
 import { CARD_NAME } from '../typings';
 
 const Center = () => {
     const { elementRef: containerRef, elementSize: containerSize } = useElementSize();
-    const props = useProfile();
+    const props = useCommonForm();
     return (
         <Stack
             textAlign={'center'}

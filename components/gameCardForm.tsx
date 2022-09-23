@@ -16,14 +16,14 @@ import {
 import { DownloadIcon } from '@chakra-ui/icons';
 import { RANK_LEVEL, VOICE_CHAT, PLAY_RULE, WEAPON_CLASS, WEAPON_TYPE } from '../typings';
 import dynamic from 'next/dynamic';
-import ProfileForm from './profileForm';
-import { profileType } from '../hooks/useProfile';
+import CommonFormType from './commonForm';
+import { commonFormType } from '../hooks/useCommonForm';
 
 const GameCard = dynamic(() => import('./gameCard'), { ssr: false });
 
 type Props = {
     containerSize: { width: number; height: number };
-} & profileType;
+} & commonFormType;
 
 const GameCardForm: FC<Props> = ({
     containerSize,
@@ -111,7 +111,7 @@ const GameCardForm: FC<Props> = ({
             />
 
             {/* Name &  FriendCode*/}
-            <ProfileForm
+            <CommonFormType
                 name={name}
                 friendCode={friendCode}
                 nameSize={nameSize}

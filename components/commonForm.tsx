@@ -11,10 +11,10 @@ import {
     Radio,
     HStack,
 } from '@chakra-ui/react';
-import { profileType } from '../hooks/useProfile';
+import { commonFormType } from '../hooks/useCommonForm';
 import { FONT_FAMILY, FONT_FAMILY_NAME } from '../typings';
 
-const ProfileForm: FC<profileType> = ({
+const CommonFormType: FC<commonFormType> = ({
     nameSize,
     handleNameChange,
     updateNameSize,
@@ -75,4 +75,4 @@ const ProfileForm: FC<profileType> = ({
     );
 };
 
-export default ProfileForm;
+export default CommonFormType;
