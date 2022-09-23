@@ -31,6 +31,7 @@ const Home: NextPage = () => {
                     type='font/woff'
                     crossOrigin=''
                 />
+                <link rel='icon' href='/favicon.ico' />
             </Head>
             <Container maxW={'full'} p={0}>
                 <Header />
