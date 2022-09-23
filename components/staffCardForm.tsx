@@ -11,12 +11,14 @@ import {
     Checkbox,
     CheckboxGroup,
     FormHelperText,
+    RadioGroup,
+    Radio,
 } from '@chakra-ui/react';
 import { DownloadIcon } from '@chakra-ui/icons';
 import dynamic from 'next/dynamic';
 import CommonForm from './commonForm';
 import { commonFormType } from '../hooks/useCommonForm';
-import { PLAY_TIME, SALMON_RUN_LEVEL, PLAY_STYLE } from '../typings';
+import { PLAY_TIME, SALMON_RUN_LEVEL, PLAY_STYLE, FONT_FAMILY, FONT_FAMILY_NAME } from '../typings';
 
 const StaffCard = dynamic(() => import('./staffCard'), { ssr: false });
 
@@ -32,9 +34,12 @@ const StaffCardForm: FC<Props> = ({
     handleNameChange,
     updateNameSize,
     handleFriendCodeChange,
-    fontFamily,
-    handleFontFamilyChange,
 }) => {
+    const [fontFamily, setFontFamily] = useState(FONT_FAMILY.TAIWANPEARL);
+    const handleFontFamilyChange = ({ currentTarget: { value } }: ChangeEvent<HTMLInputElement>) => {
+        setFontFamily(FONT_FAMILY[value as keyof typeof FONT_FAMILY]);
+    };
+
     const exportRef = useRef(null) as unknown as MutableRefObject<() => void | null>;
 
     const [playTime, setPlayTime] = useState(new Set([PLAY_TIME.MON]));
@@ -101,9 +106,27 @@ const StaffCardForm: FC<Props> = ({
                 handleNameChange={handleNameChange}
                 updateNameSize={updateNameSize}
                 handleFriendCodeChange={handleFriendCodeChange}
-                fontFamily={fontFamily}
-                handleFontFamilyChange={handleFontFamilyChange}
             />
+
+            {/* Font Family */}
+            <FormControl mt={6} as='fieldset'>
+                <FormLabel as='legend'>文字字體</FormLabel>
+                <RadioGroup defaultValue={'TAIWANPEARL'}>
+                    <HStack spacing='0' wrap={'wrap'}>
+                        {(Object.keys(FONT_FAMILY_NAME) as (keyof typeof FONT_FAMILY)[]).map((fontFamily) => (
+                            <Radio
+                                key={fontFamily}
+                                value={fontFamily}
+                                onChange={handleFontFamilyChange}
+                                px={'12px'}
+                                py={{ md: '0', sm: '0', base: '8px' }}
+                            >
+                                {FONT_FAMILY_NAME[fontFamily]}
+                            </Radio>
+                        ))}
+                    </HStack>
+                </RadioGroup>
+            </FormControl>
 
             {/* Play Time */}
             <FormControl mt={6} as='fieldset'>

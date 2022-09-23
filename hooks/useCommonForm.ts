@@ -8,8 +8,6 @@ export type commonFormType = {
     nameSize: NAME_SIZE;
     updateNameSize: () => void;
     handleFriendCodeChange: ({ currentTarget: { value } }: ChangeEvent<HTMLInputElement>) => void;
-    fontFamily: FONT_FAMILY;
-    handleFontFamilyChange: ({ currentTarget: { value } }: ChangeEvent<HTMLInputElement>) => void;
 };
 
 const useCommonForm = () => {
@@ -29,12 +27,7 @@ const useCommonForm = () => {
         setFriendCode(value);
     };
 
-    const [fontFamily, setFontFamily] = useState(FONT_FAMILY.TAIWANPEARL);
-    const handleFontFamilyChange = ({ currentTarget: { value } }: ChangeEvent<HTMLInputElement>) => {
-        setFontFamily(FONT_FAMILY[value as keyof typeof FONT_FAMILY]);
-    };
-
-    return { name, nameSize, handleNameChange, updateNameSize, friendCode, handleFriendCodeChange, fontFamily, handleFontFamilyChange };
+    return { name, nameSize, handleNameChange, updateNameSize, friendCode, handleFriendCodeChange };
 };
 
 export default useCommonForm;

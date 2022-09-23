@@ -14,7 +14,15 @@ import {
     Button,
 } from '@chakra-ui/react';
 import { DownloadIcon } from '@chakra-ui/icons';
-import { RANK_LEVEL, VOICE_CHAT, PLAY_RULE, WEAPON_CLASS, WEAPON_TYPE } from '../typings';
+import {
+    RANK_LEVEL,
+    VOICE_CHAT,
+    PLAY_RULE,
+    WEAPON_CLASS,
+    WEAPON_TYPE,
+    FONT_FAMILY_NAME,
+    FONT_FAMILY,
+} from '../typings';
 import dynamic from 'next/dynamic';
 import CommonForm from './commonForm';
 import { commonFormType } from '../hooks/useCommonForm';
@@ -33,9 +41,12 @@ const GameCardForm: FC<Props> = ({
     handleNameChange,
     updateNameSize,
     handleFriendCodeChange,
-    fontFamily,
-    handleFontFamilyChange,
 }) => {
+    const [fontFamily, setFontFamily] = useState(FONT_FAMILY.TAIWANPEARL);
+    const handleFontFamilyChange = ({ currentTarget: { value } }: ChangeEvent<HTMLInputElement>) => {
+        setFontFamily(FONT_FAMILY[value as keyof typeof FONT_FAMILY]);
+    };
+
     const [weaponList, setWeaponList] = useState({});
     const handleWeaponClassChange = ({ currentTarget: { value } }: ChangeEvent<HTMLSelectElement>) => {
         if (!value) {
@@ -118,9 +129,27 @@ const GameCardForm: FC<Props> = ({
                 handleNameChange={handleNameChange}
                 updateNameSize={updateNameSize}
                 handleFriendCodeChange={handleFriendCodeChange}
-                fontFamily={fontFamily}
-                handleFontFamilyChange={handleFontFamilyChange}
             />
+
+            {/* Font Family */}
+            <FormControl mt={6} as='fieldset'>
+                <FormLabel as='legend'>文字字體</FormLabel>
+                <RadioGroup defaultValue={'TAIWANPEARL'}>
+                    <HStack spacing='0' wrap={'wrap'}>
+                        {(Object.keys(FONT_FAMILY_NAME) as (keyof typeof FONT_FAMILY)[]).map((fontFamily) => (
+                            <Radio
+                                key={fontFamily}
+                                value={fontFamily}
+                                onChange={handleFontFamilyChange}
+                                px={'12px'}
+                                py={{ md: '0', sm: '0', base: '8px' }}
+                            >
+                                {FONT_FAMILY_NAME[fontFamily]}
+                            </Radio>
+                        ))}
+                    </HStack>
+                </RadioGroup>
+            </FormControl>
 
             <Grid templateColumns='repeat(4, 1fr)' gap={10}>
                 <GridItem colSpan={{ md: 2, sm: 4, base: 4 }}>

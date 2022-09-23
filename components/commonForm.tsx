@@ -1,18 +1,6 @@
 import React, { FC, Fragment } from 'react';
-import {
-    FormControl,
-    FormLabel,
-    Input,
-    InputGroup,
-    InputRightElement,
-    SimpleGrid,
-    Button,
-    RadioGroup,
-    Radio,
-    HStack,
-} from '@chakra-ui/react';
+import { FormControl, FormLabel, Input, InputGroup, InputRightElement, SimpleGrid, Button } from '@chakra-ui/react';
 import { commonFormType } from '../hooks/useCommonForm';
-import { FONT_FAMILY, FONT_FAMILY_NAME } from '../typings';
 
 const CommonForm: FC<commonFormType> = ({
     nameSize,
@@ -21,8 +9,6 @@ const CommonForm: FC<commonFormType> = ({
     handleFriendCodeChange,
     name,
     friendCode,
-    fontFamily,
-    handleFontFamilyChange,
 }) => {
     return (
         <Fragment>
@@ -52,26 +38,6 @@ const CommonForm: FC<commonFormType> = ({
                     />
                 </FormControl>
             </SimpleGrid>
-
-            {/* Voice Chat */}
-            <FormControl mt={6} as='fieldset'>
-                <FormLabel as='legend'>文字字體</FormLabel>
-                <RadioGroup defaultValue={'TAIWANPEARL'}>
-                    <HStack spacing='0' wrap={'wrap'}>
-                        {(Object.keys(FONT_FAMILY_NAME) as (keyof typeof FONT_FAMILY)[]).map((fontFamily) => (
-                            <Radio
-                                key={fontFamily}
-                                value={fontFamily}
-                                onChange={handleFontFamilyChange}
-                                px={'12px'}
-                                py={{ md: '0', sm: '0', base: '8px' }}
-                            >
-                                {FONT_FAMILY_NAME[fontFamily]}
-                            </Radio>
-                        ))}
-                    </HStack>
-                </RadioGroup>
-            </FormControl>
         </Fragment>
     );
 };
