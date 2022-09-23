@@ -73,6 +73,20 @@ const Home: NextPage = () => {
                     type='font/woff'
                     crossOrigin=''
                 />
+                <link
+                    rel='preload'
+                    href='https://cdn.jsdelivr.net/gh/max32002/JasonHandWritingFonts@20220828/webfont/JasonHandwriting1-SemiBold.woff2'
+                    as='font'
+                    type='font/woff2'
+                    crossOrigin=''
+                />
+                <link
+                    rel='preload'
+                    href='https://cdn.jsdelivr.net/gh/max32002/JasonHandWritingFonts@20220828/webfont/JasonHandwriting1-SemiBold.woff'
+                    as='font'
+                    type='font/woff'
+                    crossOrigin=''
+                />
                 <link rel='icon' href='/favicon.ico' />
                 <meta property='og:type' content='website' />
                 <meta property='og:title' content='Splatoon 3 名片產生器' />

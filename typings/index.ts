@@ -5,6 +5,7 @@ export enum FONT_FAMILY {
     FAKEPEARL = 'fakepearl',
     NAIKAIFONT = 'naikaifont',
     NANIFONT = 'nanifont',
+    JASONHANDWRITING = 'jasonhandwriting',
 }
 
 export enum FONT_FAMILY_NAME {
@@ -12,6 +13,7 @@ export enum FONT_FAMILY_NAME {
     FAKEPEARL = '假粉圓體', 
     NAIKAIFONT = '內海字體',
     NANIFONT = '何某手寫體',
+    JASONHANDWRITING = '清松手寫體',
 }
 
 export enum NAME_SIZE {

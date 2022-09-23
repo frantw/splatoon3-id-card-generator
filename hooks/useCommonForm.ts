@@ -31,7 +31,6 @@ const useCommonForm = () => {
 
     const [fontFamily, setFontFamily] = useState(FONT_FAMILY.FAKEPEARL);
     const handleFontFamilyChange = ({ currentTarget: { value } }: ChangeEvent<HTMLInputElement>) => {
-        console.log(value);
         setFontFamily(FONT_FAMILY[value as keyof typeof FONT_FAMILY]);
     };
 
