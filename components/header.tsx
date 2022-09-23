@@ -1,4 +1,5 @@
 import { Heading, Stack, Text } from '@chakra-ui/react';
+import { CARD_NAME } from '../typings';
 
 const Header = () => {
     return (
@@ -7,7 +8,7 @@ const Header = () => {
             align={'center'}
             spacing={{ base: 8, md: 10 }}
             px={{ sm: 2 }}
-            pt={{ base: 20, md: 28 }}
+            pt={{ base: 20 }}
             bg={'gray.50'}
         >
             <Heading
@@ -22,8 +23,16 @@ const Header = () => {
                     名片產生器
                 </Text>
             </Heading>
-            <Text color={'gray.500'} maxW={'3xl'}>
-                Nintendo Switch 遊戲《 斯普拉遁 3（Splatoon 3）》的遊戲名片線上產生器
+            <Text color={'gray.500'} maxW={'4xl'}>
+                Nintendo Switch《 斯普拉遁3（Splatoon 3）》之{' '}
+                <Text as={'span'} position={'relative'} color={'#7D7DFA'}>
+                    {CARD_NAME.GAME_CARD}
+                </Text>{' '}
+                &{' '}
+                <Text as={'span'} position={'relative'} color={'#d56511'}>
+                    {CARD_NAME.STAFF_CARD}
+                </Text>{' '}
+                線上產生器（建議以電腦開啟）
             </Text>
         </Stack>
     );
