@@ -4,7 +4,7 @@ import { Stage, Layer, Text, Image } from 'react-konva';
 import useImage from 'use-image';
 import Shape, { shapeType } from './shape';
 import { downloadURI } from '../utils';
-import { NAME_SIZE, PLAY_STYLE, PLAY_TIME } from '../typings';
+import { NAME_SIZE, PLAY_STYLE, PLAY_TIME, CARD_NAME } from '../typings';
 
 type Props = {
     containerSize: { width: number; height: number };
@@ -60,7 +60,7 @@ const StaffCard: FC<Props> = ({
         const uri = stage.toDataURL();
         stage.size(prevSize);
         stage.scale(prevScale);
-        downloadURI(uri, 'splatoon3-staff-card.png');
+        downloadURI(uri, `${CARD_NAME.STAFF_CARD}.png`);
     };
 
     useEffect(() => {

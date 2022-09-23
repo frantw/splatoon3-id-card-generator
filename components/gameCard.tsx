@@ -2,7 +2,7 @@ import React, { FC, useMemo, useRef, useEffect, MutableRefObject } from 'react';
 import Konva from 'konva';
 import { Stage, Layer, Text, Image } from 'react-konva';
 import useImage from 'use-image';
-import { NAME_SIZE, VOICE_CHAT, PLAY_RULE } from '../typings';
+import { NAME_SIZE, VOICE_CHAT, PLAY_RULE, CARD_NAME } from '../typings';
 import Shape, { shapeType } from './shape';
 import { downloadURI } from '../utils';
 
@@ -73,7 +73,7 @@ const GameCard: FC<Props> = ({
         const uri = stage.toDataURL();
         stage.size(prevSize);
         stage.scale(prevScale);
-        downloadURI(uri, 'splatoon3-game-card.png');
+        downloadURI(uri, `${CARD_NAME.GAME_CARD}.png`);
     };
 
     useEffect(() => {

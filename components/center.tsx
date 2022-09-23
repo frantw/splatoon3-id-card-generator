@@ -3,6 +3,7 @@ import GameCardForm from './gameCardForm';
 import StaffCardForm from './staffCardForm';
 import useElementSize from '../hooks/useElementSize';
 import useProfile from '../hooks/useProfile';
+import { CARD_NAME } from '../typings';
 
 const Center = () => {
     const { elementRef: containerRef, elementSize: containerSize } = useElementSize();
@@ -28,8 +29,8 @@ const Center = () => {
             >
                 <Tabs variant='soft-rounded' colorScheme='yellow'>
                     <TabList>
-                        <Tab>遊戲名片</Tab>
-                        <Tab>打工員工證</Tab>
+                        <Tab>{CARD_NAME.GAME_CARD}</Tab>
+                        <Tab>{CARD_NAME.STAFF_CARD}</Tab>
                     </TabList>
                     <TabPanels ref={containerRef}>
                         <TabPanel px={0}>

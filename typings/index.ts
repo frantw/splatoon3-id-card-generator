@@ -11,6 +11,11 @@ export enum CARD_TYPE {
     STAFF_CARD = 'staff-card',
 }
 
+export enum CARD_NAME {
+    GAME_CARD = '遊戲名片',
+    STAFF_CARD = '打工仔員工證',
+}
+
 export enum RANK_LEVEL {
     C_MINUS = 'C-',
     C = 'C',
