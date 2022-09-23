@@ -11,7 +11,7 @@ const ProfileForm: FC<profileType> = ({
     friendCode,
 }) => {
     return (
-        <SimpleGrid columns={2} spacing={10}>
+        <SimpleGrid columns={{ md: 2, sm: 2, base: 1 }} spacing={{ md: 10, sm: 10, base: 0 }}>
             {/* Name */}
             <FormControl mt={6}>
                 <FormLabel>你的名字</FormLabel>

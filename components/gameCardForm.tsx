@@ -118,10 +118,10 @@ const GameCardForm: FC<Props> = ({
             />
 
             <Grid templateColumns='repeat(4, 1fr)' gap={10}>
-                <GridItem colSpan={2}>
+                <GridItem colSpan={{ md: 2, sm: 4, base: 4 }}>
                     <FormControl mt={6}>
                         <FormLabel>喜愛武器</FormLabel>
-                        <SimpleGrid columns={2} spacing={1}>
+                        <SimpleGrid columns={2} spacing={{ md: 1, sm: 10, base: 1 }}>
                             {/* Weapon Class */}
                             <Select placeholder='選擇武器分類' isRequired={true} onChange={handleWeaponClassChange}>
                                 {(Object.keys(WEAPON_CLASS) as (keyof typeof WEAPON_CLASS)[]).map((weaponClass) => (
@@ -142,16 +142,16 @@ const GameCardForm: FC<Props> = ({
                         </SimpleGrid>
                     </FormControl>
                 </GridItem>
-                <GridItem colSpan={1}>
+                <GridItem colSpan={{ md: 1, sm: 2, base: 4 }}>
                     {/* Level */}
-                    <FormControl mt={6}>
+                    <FormControl mt={{ md: 6, sm: 0, base: 0 }}>
                         <FormLabel>你的等級</FormLabel>
                         <Input type='number' maxLength={3} placeholder='1' onChange={handleLevelChange} />
                     </FormControl>
                 </GridItem>
-                <GridItem colSpan={1}>
+                <GridItem colSpan={{ md: 1, sm: 2, base: 4 }}>
                     {/* Rank Level */}
-                    <FormControl mt={6}>
+                    <FormControl mt={{ md: 6, sm: 0, base: 0 }}>
                         <FormLabel>Rank 等級</FormLabel>
                         <Select onChange={handleRankLevelChange} defaultValue={RANK_LEVEL.C_MINUS}>
                             {(Object.keys(RANK_LEVEL) as (keyof typeof RANK_LEVEL)[]).map((rankLevel) => (
@@ -168,9 +168,15 @@ const GameCardForm: FC<Props> = ({
             <FormControl mt={6} as='fieldset'>
                 <FormLabel as='legend'>語音方式</FormLabel>
                 <RadioGroup defaultValue={'DISCORD'}>
-                    <HStack spacing='24px'>
+                    <HStack spacing='0' wrap={'wrap'}>
                         {(Object.keys(VOICE_CHAT) as (keyof typeof VOICE_CHAT)[]).map((voiceChat) => (
-                            <Radio key={voiceChat} value={voiceChat} onChange={handleVoiceChatChange}>
+                            <Radio
+                                key={voiceChat}
+                                value={voiceChat}
+                                onChange={handleVoiceChatChange}
+                                px={'12px'}
+                                py={{ md: '0', sm: '0', base: '8px' }}
+                            >
                                 {VOICE_CHAT[voiceChat]}
                             </Radio>
                         ))}
@@ -178,22 +184,23 @@ const GameCardForm: FC<Props> = ({
                 </RadioGroup>
             </FormControl>
 
-            {/* Play Style */}
+            {/* Play Rules */}
             <FormControl mt={6} as='fieldset'>
                 <FormLabel as='legend'>喜愛玩法</FormLabel>
-                <HStack spacing='16px'>
+                <HStack spacing='0' wrap={'wrap'}>
                     {(Object.keys(PLAY_RULE) as (keyof typeof PLAY_RULE)[]).map((key) => {
                         const rule = PLAY_RULE[key];
                         const isFavorite = favoritePlayRules.has(rule);
                         const isAcceptable = acceptablePlayRules.has(rule);
                         return (
-                            <Button
-                                key={key}
-                                colorScheme={isFavorite ? 'blue' : isAcceptable ? 'blackAlpha' : 'gray'}
-                                onClick={() => handlePlayRulesClick(rule)}
-                            >
-                                {rule}
-                            </Button>
+                            <Box key={key} px={'12px'} py={{ md: '0', sm: '8px', base: '8px' }}>
+                                <Button
+                                    colorScheme={isFavorite ? 'blue' : isAcceptable ? 'blackAlpha' : 'gray'}
+                                    onClick={() => handlePlayRulesClick(rule)}
+                                >
+                                    {rule}
+                                </Button>
+                            </Box>
                         );
                     })}
                 </HStack>
