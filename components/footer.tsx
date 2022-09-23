@@ -21,10 +21,10 @@ const Footer = () => {
                 align={{ base: 'center', md: 'center' }}
             >
                 <Text color={'gray.500'}>Splatoon 3 名片產生器 © 2022</Text>
-                <Text color={'gray.500'}>
+                <Text color={'gray.500'} fontSize={{ base: '14px', sm: '16px' }}>
                     本網站所使用之名片模板由{' '}
                     <Link color={'#1DA1F2'} href='https://twitter.com/roo_kie_art'>
-                        Roo（@roo_kie_art）
+                        Roo (@roo_kie_art)
                     </Link>{' '}
                     提供
                 </Text>

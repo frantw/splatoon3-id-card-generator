@@ -23,7 +23,7 @@ const Header = () => {
                     名片產生器
                 </Text>
             </Heading>
-            <Text color={'gray.500'} maxW={'4xl'}>
+            <Text color={'gray.500'} maxW={'4xl'} fontSize={{ base: '14px', sm: '16px' }}>
                 Nintendo Switch《 斯普拉遁 3（Splatoon 3）》之{' '}
                 <Text as={'span'} position={'relative'} color={'#7D7DFA'}>
                     {CARD_NAME.GAME_CARD}
