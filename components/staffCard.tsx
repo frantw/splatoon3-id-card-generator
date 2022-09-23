@@ -4,7 +4,7 @@ import { Stage, Layer, Text, Image, Group } from 'react-konva';
 import useImage from 'use-image';
 import Shape, { shapeType } from './shape';
 import { downloadURI } from '../utils';
-import { NAME_SIZE, PLAY_STYLE, PLAY_TIME, CARD_NAME } from '../typings';
+import { NAME_SIZE, FONT_FAMILY, PLAY_STYLE, PLAY_TIME, CARD_NAME } from '../typings';
 import { SceneContext } from 'konva/lib/Context';
 
 type Props = {
@@ -12,6 +12,7 @@ type Props = {
     avatarImage: null | HTMLImageElement;
     name: string;
     nameSize: NAME_SIZE;
+    fontFamily: FONT_FAMILY;
     friendCode: string;
     playTime: Set<PLAY_TIME>;
     timeMemo: string;
@@ -59,6 +60,7 @@ const StaffCard: FC<Props> = ({
     avatarImage,
     name,
     nameSize,
+    fontFamily,
     friendCode,
     playTime,
     timeMemo,
@@ -97,11 +99,15 @@ const StaffCard: FC<Props> = ({
                 <CardImage />
                 {/* Friend Code */}
                 <Text
-                    x={580}
-                    y={365}
+                    x={450}
+                    y={340}
+                    width={675}
+                    height={100}
+                    align={'center'}
+                    verticalAlign={'middle'}
                     text={friendCode || 'SW-1234-5678-9999'}
                     fontSize={48}
-                    fontFamily={'naikaifont'}
+                    fontFamily={fontFamily}
                     fill={fontColor}
                 />
                 {/* Name */}
@@ -114,7 +120,7 @@ const StaffCard: FC<Props> = ({
                     verticalAlign={'middle'}
                     text={name || 'さくら'}
                     fontSize={nameFontSize}
-                    fontFamily={'naikaifont'}
+                    fontFamily={fontFamily}
                     fill={fontColor}
                 />
                 {/*  Play Time */}
@@ -135,7 +141,7 @@ const StaffCard: FC<Props> = ({
                     verticalAlign={'middle'}
                     text={timeMemo || '24小時全年無休！'}
                     fontSize={48}
-                    fontFamily={'naikaifont'}
+                    fontFamily={fontFamily}
                     fill={fontColor}
                 />
                 {/*  Salmon Run Rank Level */}
@@ -148,7 +154,7 @@ const StaffCard: FC<Props> = ({
                     verticalAlign={'middle'}
                     text={salmonRunRankLevel}
                     fontSize={48}
-                    fontFamily={'naikaifont'}
+                    fontFamily={fontFamily}
                     fill={fontColor}
                 />
                 {/* Play Style */}

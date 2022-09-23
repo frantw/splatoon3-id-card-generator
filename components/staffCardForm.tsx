@@ -32,6 +32,8 @@ const StaffCardForm: FC<Props> = ({
     handleNameChange,
     updateNameSize,
     handleFriendCodeChange,
+    fontFamily,
+    handleFontFamilyChange,
 }) => {
     const exportRef = useRef(null) as unknown as MutableRefObject<() => void | null>;
 
@@ -82,6 +84,7 @@ const StaffCardForm: FC<Props> = ({
                 avatarImage={avatarImage}
                 name={name}
                 nameSize={nameSize}
+                fontFamily={fontFamily}
                 friendCode={friendCode}
                 playTime={playTime}
                 timeMemo={timeMemo}
@@ -98,6 +101,8 @@ const StaffCardForm: FC<Props> = ({
                 handleNameChange={handleNameChange}
                 updateNameSize={updateNameSize}
                 handleFriendCodeChange={handleFriendCodeChange}
+                fontFamily={fontFamily}
+                handleFontFamilyChange={handleFontFamilyChange}
             />
 
             {/* Play Time */}

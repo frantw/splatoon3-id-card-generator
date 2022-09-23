@@ -2,7 +2,7 @@ import React, { FC, useMemo, useRef, useEffect, MutableRefObject } from 'react';
 import Konva from 'konva';
 import { Stage, Layer, Text, Image } from 'react-konva';
 import useImage from 'use-image';
-import { NAME_SIZE, VOICE_CHAT, PLAY_RULE, CARD_NAME } from '../typings';
+import { NAME_SIZE, FONT_FAMILY, VOICE_CHAT, PLAY_RULE, CARD_NAME } from '../typings';
 import Shape, { shapeType } from './shape';
 import { downloadURI } from '../utils';
 
@@ -10,6 +10,7 @@ type Props = {
     containerSize: { width: number; height: number };
     name: string;
     nameSize: NAME_SIZE;
+    fontFamily: FONT_FAMILY;
     friendCode: string;
     favoriteWeapon: string;
     level: string;
@@ -44,6 +45,7 @@ const GameCard: FC<Props> = ({
     containerSize,
     name,
     nameSize,
+    fontFamily,
     friendCode,
     favoriteWeapon,
     level,
@@ -96,17 +98,21 @@ const GameCard: FC<Props> = ({
                     verticalAlign={'middle'}
                     text={name || 'さくら'}
                     fontSize={nameFontSize}
-                    fontFamily={'naikaifont'}
+                    fontFamily={fontFamily}
                     fill={fontColor}
                 />
 
                 {/* Friend Code */}
                 <Text
-                    x={368}
-                    y={253}
+                    x={300}
+                    y={235}
+                    width={400}
+                    height={70}
+                    align={'center'}
+                    verticalAlign={'middle'}
                     text={friendCode || 'SW-1234-5678-9999'}
                     fontSize={36}
-                    fontFamily={'naikaifont'}
+                    fontFamily={fontFamily}
                     fill={fontColor}
                 />
 
@@ -120,7 +126,7 @@ const GameCard: FC<Props> = ({
                     verticalAlign={'middle'}
                     text={favoriteWeapon}
                     fontSize={48}
-                    fontFamily={'naikaifont'}
+                    fontFamily={fontFamily}
                     fill={fontColor}
                 />
 
@@ -156,7 +162,7 @@ const GameCard: FC<Props> = ({
                     verticalAlign={'middle'}
                     text={date}
                     fontSize={36}
-                    fontFamily={'naikaifont'}
+                    fontFamily={fontFamily}
                     fill={fontColor}
                 />
 
@@ -170,7 +176,7 @@ const GameCard: FC<Props> = ({
                     verticalAlign={'middle'}
                     text={level}
                     fontSize={56}
-                    fontFamily={'naikaifont'}
+                    fontFamily={fontFamily}
                     fill={fontColor}
                 />
 
@@ -184,7 +190,7 @@ const GameCard: FC<Props> = ({
                     verticalAlign={'middle'}
                     text={rankLevel}
                     fontSize={56}
-                    fontFamily={'naikaifont'}
+                    fontFamily={fontFamily}
                     fill={fontColor}
                 />
 
@@ -198,7 +204,7 @@ const GameCard: FC<Props> = ({
                     verticalAlign={'middle'}
                     text={memo}
                     fontSize={48}
-                    fontFamily={'naikaifont'}
+                    fontFamily={fontFamily}
                     fill={fontColor}
                 />
             </Layer>

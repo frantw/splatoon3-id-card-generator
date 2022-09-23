@@ -1,5 +1,15 @@
 export * from './weapons.constant';
 
+export enum FONT_FAMILY {
+    FAKEPEARL = 'fakepearl',
+    NAIKAIFONT = 'naikaifont',
+}
+
+export enum FONT_FAMILY_NAME {
+    FAKEPEARL = '假粉圓體', 
+    NAIKAIFONT = '內海字體',
+}
+
 export enum NAME_SIZE {
     SMALL = '文字小',
     MEDIUM = '文字中',

@@ -7,7 +7,7 @@ import { CARD_NAME } from '../typings';
 
 const Center = () => {
     const { elementRef: containerRef, elementSize: containerSize } = useElementSize();
-    const { name, handleNameChange, nameSize, updateNameSize, friendCode, handleFriendCodeChange } = useProfile();
+    const props = useProfile();
     return (
         <Stack
             textAlign={'center'}
@@ -34,26 +34,10 @@ const Center = () => {
                     </TabList>
                     <TabPanels ref={containerRef}>
                         <TabPanel px={0}>
-                            <GameCardForm
-                                containerSize={containerSize}
-                                name={name}
-                                nameSize={nameSize}
-                                friendCode={friendCode}
-                                handleNameChange={handleNameChange}
-                                updateNameSize={updateNameSize}
-                                handleFriendCodeChange={handleFriendCodeChange}
-                            />
+                            <GameCardForm containerSize={containerSize} {...props} />
                         </TabPanel>
                         <TabPanel px={0}>
-                            <StaffCardForm
-                                containerSize={containerSize}
-                                name={name}
-                                nameSize={nameSize}
-                                friendCode={friendCode}
-                                handleNameChange={handleNameChange}
-                                updateNameSize={updateNameSize}
-                                handleFriendCodeChange={handleFriendCodeChange}
-                            />
+                            <StaffCardForm containerSize={containerSize} {...props} />
                         </TabPanel>
                     </TabPanels>
                 </Tabs>

@@ -1,5 +1,5 @@
 import { useState, ChangeEvent } from 'react';
-import { NAME_SIZE } from '../typings';
+import { NAME_SIZE, FONT_FAMILY } from '../typings';
 
 export type profileType = {
     name: string;
@@ -8,6 +8,8 @@ export type profileType = {
     nameSize: NAME_SIZE;
     updateNameSize: () => void;
     handleFriendCodeChange: ({ currentTarget: { value } }: ChangeEvent<HTMLInputElement>) => void;
+    fontFamily: FONT_FAMILY;
+    handleFontFamilyChange: ({ currentTarget: { value } }: ChangeEvent<HTMLInputElement>) => void;
 };
 
 const useProfile = () => {
@@ -26,7 +28,14 @@ const useProfile = () => {
     const handleFriendCodeChange = ({ currentTarget: { value } }: ChangeEvent<HTMLInputElement>) => {
         setFriendCode(value);
     };
-    return { name, nameSize, handleNameChange, updateNameSize, friendCode, handleFriendCodeChange };
+
+    const [fontFamily, setFontFamily] = useState(FONT_FAMILY.FAKEPEARL);
+    const handleFontFamilyChange = ({ currentTarget: { value } }: ChangeEvent<HTMLInputElement>) => {
+        console.log(value);
+        setFontFamily(FONT_FAMILY[value as keyof typeof FONT_FAMILY]);
+    };
+
+    return { name, nameSize, handleNameChange, updateNameSize, friendCode, handleFriendCodeChange, fontFamily, handleFontFamilyChange };
 };
 
 export default useProfile;

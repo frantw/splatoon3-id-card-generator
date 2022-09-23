@@ -33,6 +33,8 @@ const GameCardForm: FC<Props> = ({
     handleNameChange,
     updateNameSize,
     handleFriendCodeChange,
+    fontFamily,
+    handleFontFamilyChange,
 }) => {
     const [weaponList, setWeaponList] = useState({});
     const handleWeaponClassChange = ({ currentTarget: { value } }: ChangeEvent<HTMLSelectElement>) => {
@@ -96,6 +98,7 @@ const GameCardForm: FC<Props> = ({
                 containerSize={containerSize}
                 name={name}
                 nameSize={nameSize}
+                fontFamily={fontFamily}
                 friendCode={friendCode}
                 favoriteWeapon={favoriteWeapon}
                 level={level}
@@ -115,6 +118,8 @@ const GameCardForm: FC<Props> = ({
                 handleNameChange={handleNameChange}
                 updateNameSize={updateNameSize}
                 handleFriendCodeChange={handleFriendCodeChange}
+                fontFamily={fontFamily}
+                handleFontFamilyChange={handleFontFamilyChange}
             />
 
             <Grid templateColumns='repeat(4, 1fr)' gap={10}>
