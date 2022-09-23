@@ -43,7 +43,7 @@ const Form: FC<Props> = ({ cardType }) => {
         setWeaponList(WEAPON_TYPE[value as keyof typeof WEAPON_CLASS]);
     };
 
-    const [favoriteWeapon, setFavoriteWeapon] = useState('');
+    const [favoriteWeapon, setFavoriteWeapon] = useState<string>(WEAPON_TYPE.BRUSH.INKBRUSH);
     const handleFavoriteWeaponChange = ({ currentTarget: { value } }: ChangeEvent<HTMLSelectElement>) => {
         if (!value) {
             setFavoriteWeapon('');
@@ -83,7 +83,7 @@ const Form: FC<Props> = ({ cardType }) => {
         }
     };
 
-    const [memo, setMemo] = useState('');
+    const [memo, setMemo] = useState('這是個範例，請自由填寫吧！');
     const handleMemoChange = ({ currentTarget: { value } }: ChangeEvent<HTMLInputElement>) => {
         setMemo(value);
     };
