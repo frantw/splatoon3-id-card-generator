@@ -27,7 +27,7 @@ const sceneHeight = 1080;
 const fontColor = '#5c4c42';
 
 const CardImage: FC = () => {
-    const [image] = useImage('/img/template/game-card.png');
+    const [image] = useImage('/img/template/game-card.webp');
     return <Image image={image} alt='splatoon3 game card' />;
 };
 

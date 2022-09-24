@@ -26,7 +26,7 @@ const sceneHeight = 1080;
 const fontColor = '#f8ef6e';
 
 const CardImage: FC = () => {
-    const [image] = useImage('/img/template/staff-card.png');
+    const [image] = useImage('/img/template/staff-card.webp');
     return <Image image={image} alt='splatoon3 staff card' />;
 };
 
@@ -36,7 +36,7 @@ const CheckMark: FC<shapeType> = (props) => {
 };
 
 const AvatarExampleImage: FC = () => {
-    const [image] = useImage('/img/avatar-example.png');
+    const [image] = useImage('/img/avatar-example.webp');
     return <Image image={image} width={625} height={625} x={1206} y={360} alt='avatar example' />;
 };
 
