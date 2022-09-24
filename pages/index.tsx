@@ -25,6 +25,34 @@ const Home: NextPage = () => {
                     type='font/woff2'
                     crossOrigin='anonymous'
                 />
+                <link
+                    rel='preload'
+                    href='https://cdn.jsdelivr.net/gh/max32002/naikaifont@1.0/webfont/NaikaiFont-Regular-Lite.woff2'
+                    as='font'
+                    type='font/woff2'
+                    crossOrigin='anonymous'
+                />
+                <link
+                    rel='preload'
+                    href='https://cdn.jsdelivr.net/gh/max32002/FakePearl@1.1/webfont/FakePearl-Regular.woff2'
+                    as='font'
+                    type='font/woff2'
+                    crossOrigin='anonymous'
+                />
+                <link
+                    rel='preload'
+                    href='https://cdn.jsdelivr.net/gh/max32002/nanifont@1.036/webfont/NaniFont-Regular.woff2'
+                    as='font'
+                    type='font/woff2'
+                    crossOrigin='anonymous'
+                />
+                <link
+                    rel='preload'
+                    href='https://cdn.jsdelivr.net/gh/max32002/JasonHandWritingFonts@20220828/webfont/JasonHandwriting1-SemiBold.woff2'
+                    as='font'
+                    type='font/woff2'
+                    crossOrigin='anonymous'
+                />
                 <link rel='preload' href='/img/template/game-card.webp' as='image' />
                 <link rel='icon' href='/favicon.ico' />
                 <meta property='og:type' content='website' />
@@ -37,35 +65,6 @@ const Home: NextPage = () => {
                 <meta property='og:url' content='https://splatoon-3.vercel.app' />
                 <meta property='og:site_name' content='Splatoon 3 名片產生器' />
             </Head>
-            <link
-                rel='preload'
-                href='https://cdn.jsdelivr.net/gh/max32002/naikaifont@1.0/webfont/NaikaiFont-Regular-Lite.woff2'
-                as='font'
-                type='font/woff2'
-                crossOrigin='anonymous'
-            />
-            <link
-                rel='preload'
-                href='https://cdn.jsdelivr.net/gh/max32002/FakePearl@1.1/webfont/FakePearl-Regular.woff2'
-                as='font'
-                type='font/woff2'
-                crossOrigin='anonymous'
-            />
-
-            <link
-                rel='preload'
-                href='https://cdn.jsdelivr.net/gh/max32002/nanifont@1.036/webfont/NaniFont-Regular.woff2'
-                as='font'
-                type='font/woff2'
-                crossOrigin='anonymous'
-            />
-            <link
-                rel='preload'
-                href='https://cdn.jsdelivr.net/gh/max32002/JasonHandWritingFonts@20220828/webfont/JasonHandwriting1-SemiBold.woff2'
-                as='font'
-                type='font/woff2'
-                crossOrigin='anonymous'
-            />
             <Container maxW={'full'} p={0}>
                 <Header />
                 <Center />
