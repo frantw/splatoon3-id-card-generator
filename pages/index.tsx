@@ -61,13 +61,10 @@ const Home: NextPage = () => {
                     property='og:description'
                     content='Nintendo Switch 遊戲《 斯普拉遁 3（Splatoon 3）》之 遊戲名片 & 打工仔員工證 線上產生器'
                 />
-                <meta property='og:image' content='https://splatoon-3.vercel.app/img/og-image.png' />
+                <meta property='og:image' content='/img/og-image.png' />
                 <meta property='og:url' content='https://splatoon-3.vercel.app' />
                 <meta property='og:site_name' content='Splatoon 3 名片產生器' />
-                <meta name='twitter:card' content='summary_large_image' />
-                <meta name='twitter:site' content='@_FranTW' />
-                <meta name='twitter:creator' content='@_FranTW' />
-                <meta content='https://splatoon-3.vercel.app/' name='twitter:domain' />
+                <meta name='twitter:card' content='summary' />
                 <meta name='twitter:title' content='Splatoon 3 名片產生器' />
                 <meta
                     name='twitter:description'
