@@ -20,7 +20,7 @@ const Home: NextPage = () => {
                 <link rel='preconnect' href='https://cdn.jsdelivr.net'></link>
                 <link
                     rel='preload'
-                    href='https://cdn.jsdelivr.net/gh/max32002/TaiwanPearl@2.125/webfont/TaiwanPearl-Regular.woff2'
+                    href='https://cdn.jsdelivr.net/gh/max32002/TaiwanPearl@2.0/webfont/TaiwanPearl-Regular.woff2'
                     as='font'
                     type='font/woff2'
                     crossOrigin='anonymous'
@@ -41,14 +41,14 @@ const Home: NextPage = () => {
                 />
                 <link
                     rel='preload'
-                    href='https://cdn.jsdelivr.net/gh/max32002/nanifont@1.036/webfont/NaniFont-Regular.woff2'
+                    href='https://cdn.jsdelivr.net/gh/max32002/nanifont@1.0/webfont/NaniFont-Regular.woff2'
                     as='font'
                     type='font/woff2'
                     crossOrigin='anonymous'
                 />
                 <link
                     rel='preload'
-                    href='https://cdn.jsdelivr.net/gh/max32002/JasonHandWritingFonts@20220828/webfont/JasonHandwriting1-SemiBold.woff2'
+                    href='https://cdn.jsdelivr.net/gh/max32002/JasonHandWritingFonts@1.1/webfont/JasonHandwriting2-SemiBold.woff2'
                     as='font'
                     type='font/woff2'
                     crossOrigin='anonymous'
