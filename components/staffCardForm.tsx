@@ -35,7 +35,7 @@ const StaffCardForm: FC<Props> = ({
     updateNameSize,
     handleFriendCodeChange,
 }) => {
-    const [fontFamily, setFontFamily] = useState(FONT_FAMILY.TAIWANPEARL);
+    const [fontFamily, setFontFamily] = useState(FONT_FAMILY.MICROSOFT_JHENGHEI);
     const handleFontFamilyChange = ({ currentTarget: { value } }: ChangeEvent<HTMLInputElement>) => {
         setFontFamily(FONT_FAMILY[value as keyof typeof FONT_FAMILY]);
     };
@@ -111,7 +111,7 @@ const StaffCardForm: FC<Props> = ({
             {/* Font Family */}
             <FormControl mt={6} as='fieldset'>
                 <FormLabel as='legend'>文字字體</FormLabel>
-                <RadioGroup defaultValue={'TAIWANPEARL'}>
+                <RadioGroup defaultValue={'MICROSOFT_JHENGHEI'}>
                     <HStack spacing='0' wrap={'wrap'}>
                         {(Object.keys(FONT_FAMILY_NAME) as (keyof typeof FONT_FAMILY)[]).map((fontFamily) => (
                             <Radio

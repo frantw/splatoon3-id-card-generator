@@ -1,6 +1,7 @@
 export * from './weapons.constant';
 
 export enum FONT_FAMILY {
+    MICROSOFT_JHENGHEI = 'Microsoft JhengHei',
     TAIWANPEARL = 'taiwanpearl',
     FAKEPEARL = 'fakepearl',
     NAIKAIFONT = 'naikaifont',
@@ -9,6 +10,7 @@ export enum FONT_FAMILY {
 }
 
 export enum FONT_FAMILY_NAME {
+    MICROSOFT_JHENGHEI = '微軟正黑體',
     TAIWANPEARL = '台灣圓體',
     FAKEPEARL = '假粉圓體',
     NAIKAIFONT = '內海字體',
