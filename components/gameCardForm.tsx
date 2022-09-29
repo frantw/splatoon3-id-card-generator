@@ -12,6 +12,8 @@ import {
     GridItem,
     SimpleGrid,
     Button,
+    AspectRatio,
+    Skeleton,
 } from '@chakra-ui/react';
 import { DownloadIcon } from '@chakra-ui/icons';
 import {
@@ -26,8 +28,9 @@ import {
 import dynamic from 'next/dynamic';
 import CommonForm from './commonForm';
 import { commonFormType } from '../hooks/useCommonForm';
+import { sceneWidth, sceneHeight } from '../constants';
 
-const GameCard = dynamic(() => import('./gameCard'), { ssr: false });
+const GameCard = dynamic(() => import('./gameCard'), { ssr: false, loading: () => <Skeleton /> });
 
 type Props = {
     containerSize: { width: number; height: number };
@@ -105,21 +108,23 @@ const GameCardForm: FC<Props> = ({
     return (
         <Box>
             {/* Card Preview */}
-            <GameCard
-                containerSize={containerSize}
-                name={name}
-                nameSize={nameSize}
-                fontFamily={fontFamily}
-                friendCode={friendCode}
-                favoriteWeapon={favoriteWeapon}
-                level={level}
-                rankLevel={rankLevel}
-                voiceChat={voiceChat}
-                favoritePlayRules={favoritePlayRules as Set<PLAY_RULE>}
-                acceptablePlayRules={acceptablePlayRules as Set<PLAY_RULE>}
-                memo={memo}
-                exportRef={exportRef}
-            />
+            <AspectRatio maxW={`${sceneWidth}px`} ratio={sceneWidth / sceneHeight}>
+                <GameCard
+                    containerSize={containerSize}
+                    name={name}
+                    nameSize={nameSize}
+                    fontFamily={fontFamily}
+                    friendCode={friendCode}
+                    favoriteWeapon={favoriteWeapon}
+                    level={level}
+                    rankLevel={rankLevel}
+                    voiceChat={voiceChat}
+                    favoritePlayRules={favoritePlayRules as Set<PLAY_RULE>}
+                    acceptablePlayRules={acceptablePlayRules as Set<PLAY_RULE>}
+                    memo={memo}
+                    exportRef={exportRef}
+                />
+            </AspectRatio>
 
             {/* Name &  FriendCode*/}
             <CommonForm

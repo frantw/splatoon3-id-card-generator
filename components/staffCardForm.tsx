@@ -13,14 +13,17 @@ import {
     FormHelperText,
     RadioGroup,
     Radio,
+    AspectRatio,
+    Skeleton,
 } from '@chakra-ui/react';
 import { DownloadIcon } from '@chakra-ui/icons';
 import dynamic from 'next/dynamic';
 import CommonForm from './commonForm';
 import { commonFormType } from '../hooks/useCommonForm';
 import { PLAY_TIME, SALMON_RUN_LEVEL, PLAY_STYLE, FONT_FAMILY, FONT_FAMILY_NAME } from '../typings';
+import { sceneWidth, sceneHeight } from '../constants';
 
-const StaffCard = dynamic(() => import('./staffCard'), { ssr: false });
+const StaffCard = dynamic(() => import('./staffCard'), { ssr: false, loading: () => <Skeleton /> });
 
 type Props = {
     containerSize: { width: number; height: number };
@@ -84,19 +87,21 @@ const StaffCardForm: FC<Props> = ({
     return (
         <Box>
             {/* Card Preview */}
-            <StaffCard
-                containerSize={containerSize}
-                avatarImage={avatarImage}
-                name={name}
-                nameSize={nameSize}
-                fontFamily={fontFamily}
-                friendCode={friendCode}
-                playTime={playTime}
-                timeMemo={timeMemo}
-                salmonRunRankLevel={salmonRunRankLevel}
-                playStyle={playStyle}
-                exportRef={exportRef}
-            ></StaffCard>
+            <AspectRatio maxW={`${sceneWidth}px`} ratio={sceneWidth / sceneHeight}>
+                <StaffCard
+                    containerSize={containerSize}
+                    avatarImage={avatarImage}
+                    name={name}
+                    nameSize={nameSize}
+                    fontFamily={fontFamily}
+                    friendCode={friendCode}
+                    playTime={playTime}
+                    timeMemo={timeMemo}
+                    salmonRunRankLevel={salmonRunRankLevel}
+                    playStyle={playStyle}
+                    exportRef={exportRef}
+                ></StaffCard>
+            </AspectRatio>
 
             {/* Name &  FriendCode*/}
             <CommonForm
