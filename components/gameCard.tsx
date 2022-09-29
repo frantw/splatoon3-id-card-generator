@@ -5,6 +5,9 @@ import useImage from 'use-image';
 import { NAME_SIZE, FONT_FAMILY, VOICE_CHAT, PLAY_RULE, CARD_NAME } from '../typings';
 import Shape, { shapeType } from './shape';
 import { downloadURI } from '../utils';
+import { sceneWidth, sceneHeight } from '../constants';
+
+const fontColor = '#5c4c42';
 
 type Props = {
     containerSize: { width: number; height: number };
@@ -21,10 +24,6 @@ type Props = {
     memo: string;
     exportRef: MutableRefObject<() => void | null>;
 };
-
-const sceneWidth = 1920;
-const sceneHeight = 1080;
-const fontColor = '#5c4c42';
 
 const CardImage: FC = () => {
     const [image] = useImage('/img/template/game-card.webp');

@@ -6,6 +6,9 @@ import Shape, { shapeType } from './shape';
 import { downloadURI } from '../utils';
 import { NAME_SIZE, FONT_FAMILY, PLAY_STYLE, PLAY_TIME, CARD_NAME } from '../typings';
 import { SceneContext } from 'konva/lib/Context';
+import { sceneWidth, sceneHeight } from '../constants';
+
+const fontColor = '#f8ef6e';
 
 type Props = {
     containerSize: { width: number; height: number };
@@ -20,10 +23,6 @@ type Props = {
     playStyle: Set<PLAY_STYLE>;
     exportRef: MutableRefObject<() => void | null>;
 };
-
-const sceneWidth = 1920;
-const sceneHeight = 1080;
-const fontColor = '#f8ef6e';
 
 const CardImage: FC = () => {
     const [image] = useImage('/img/template/staff-card.webp');
