@@ -62,7 +62,8 @@ const GameCard: FC<Props> = ({
         return nameSize === NAME_SIZE.SMALL ? 48 : nameSize === NAME_SIZE.MEDIUM ? 64 : 80;
     }, [nameSize]);
 
-    const date = new Date().toLocaleDateString();
+    const date = new Date();
+    const formatDate = [date.getFullYear(), date.getMonth() + 1, date.getDate()].join('/');
 
     const handleExport = () => {
         if (!stageRef.current) return;
@@ -159,7 +160,7 @@ const GameCard: FC<Props> = ({
                     height={50}
                     align={'center'}
                     verticalAlign={'middle'}
-                    text={date}
+                    text={formatDate}
                     fontSize={36}
                     fontFamily={fontFamily}
                     fill={fontColor}
