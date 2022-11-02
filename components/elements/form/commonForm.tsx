@@ -1,6 +1,6 @@
 import React, { FC, Fragment } from 'react';
 import { FormControl, FormLabel, Input, InputGroup, InputRightElement, SimpleGrid, Button } from '@chakra-ui/react';
-import { commonFormType } from '../hooks/useCommonForm';
+import { commonFormType } from '../../../hooks/useCommonForm';
 
 const CommonForm: FC<commonFormType> = ({
     nameSize,

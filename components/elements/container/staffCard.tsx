@@ -2,11 +2,11 @@ import React, { FC, useMemo, useRef, useEffect, MutableRefObject } from 'react';
 import Konva from 'konva';
 import { Stage, Layer, Text, Image, Group } from 'react-konva';
 import useImage from 'use-image';
-import Shape, { shapeType } from './shape';
-import { downloadURI } from '../utils';
-import { NAME_SIZE, FONT_FAMILY, PLAY_STYLE, PLAY_TIME, CARD_NAME } from '../typings';
+import Shape, { shapeType } from '../shape';
+import { downloadURI } from '../../../utils';
+import { NAME_SIZE, FONT_FAMILY, PLAY_STYLE, PLAY_TIME, CARD_NAME } from '../../../typings';
 import { SceneContext } from 'konva/lib/Context';
-import { sceneWidth, sceneHeight } from '../constants';
+import { sceneWidth, sceneHeight } from '../../../constants';
 
 const fontColor = '#f8ef6e';
 

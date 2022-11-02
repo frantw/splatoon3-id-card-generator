@@ -24,13 +24,13 @@ import {
     WEAPON_TYPE,
     FONT_FAMILY_NAME,
     FONT_FAMILY,
-} from '../typings';
+} from '../../../typings';
 import dynamic from 'next/dynamic';
 import CommonForm from './commonForm';
-import { commonFormType } from '../hooks/useCommonForm';
-import { sceneWidth, sceneHeight } from '../constants';
+import { commonFormType } from '../../../hooks/useCommonForm';
+import { sceneWidth, sceneHeight } from '../../../constants';
 
-const GameCard = dynamic(() => import('./gameCard'), { ssr: false, loading: () => <Skeleton /> });
+const GameCard = dynamic(() => import('../container/gameCard'), { ssr: false, loading: () => <Skeleton /> });
 
 type Props = {
     containerSize: { width: number; height: number };

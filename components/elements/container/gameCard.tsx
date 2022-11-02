@@ -2,10 +2,10 @@ import React, { FC, useMemo, useRef, useEffect, MutableRefObject } from 'react';
 import Konva from 'konva';
 import { Stage, Layer, Text, Image } from 'react-konva';
 import useImage from 'use-image';
-import { NAME_SIZE, FONT_FAMILY, VOICE_CHAT, PLAY_RULE, CARD_NAME } from '../typings';
-import Shape, { shapeType } from './shape';
-import { downloadURI } from '../utils';
-import { sceneWidth, sceneHeight } from '../constants';
+import { NAME_SIZE, FONT_FAMILY, VOICE_CHAT, PLAY_RULE, CARD_NAME } from '../../../typings';
+import Shape, { shapeType } from '../shape';
+import { downloadURI } from '../../../utils';
+import { sceneWidth, sceneHeight } from '../../../constants';
 
 const fontColor = '#5c4c42';
 

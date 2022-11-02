@@ -1,6 +1,6 @@
 import { Stack, Tab, Tabs, TabList, TabPanel, TabPanels, useColorModeValue } from '@chakra-ui/react';
-import GameCardForm from './gameCardForm';
-import StaffCardForm from './staffCardForm';
+import GameCardForm from './elements/form/gameCardForm';
+import StaffCardForm from './elements/form/staffCardForm';
 import useElementSize from '../hooks/useElementSize';
 import useCommonForm from '../hooks/useCommonForm';
 import { CARD_NAME } from '../typings';
