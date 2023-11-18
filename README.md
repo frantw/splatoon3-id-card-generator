@@ -29,3 +29,4 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 ## Special Thanks
 
 - [Roo (@roo_kie_art)](https://twitter.com/roo_kie_art) - who provided these awesome card templates.
+- [stat.ink](https://stat.ink/api-info/weapon3) - an open source project provided the weapons api.
