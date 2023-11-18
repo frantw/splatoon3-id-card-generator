@@ -21,13 +21,22 @@ const Footer = () => {
                 align={{ base: 'center', md: 'center' }}
             >
                 <Text color={'gray.500'}>Splatoon 3 名片產生器 © 2022</Text>
-                <Text color={'gray.500'} fontSize={{ base: '14px', sm: '16px' }}>
-                    本網站所使用之名片模板由{' '}
-                    <Link color={'#1DA1F2'} href='https://twitter.com/roo_kie_art'>
-                        Roo (@roo_kie_art)
-                    </Link>{' '}
-                    提供
-                </Text>
+                <Stack>
+                    <Text color={'gray.500'} fontSize={{ base: '12px', sm: '14px' }}>
+                        感謝{' '}
+                        <Link color={'#1DA1F2'} href='https://twitter.com/roo_kie_art'>
+                            Roo (@roo_kie_art)
+                        </Link>{' '}
+                        授權提供名片模板
+                    </Text>
+                    <Text color={'gray.500'} fontSize={{ base: '12px', sm: '14px' }}>
+                        感謝{' '}
+                        <Link color={'#1DA1F2'} href='https://stat.ink/api-info/weapon3'>
+                            stat.ink
+                        </Link>{' '}
+                        開源項目提供武器數據
+                    </Text>
+                </Stack>
             </Container>
         </Box>
     );
