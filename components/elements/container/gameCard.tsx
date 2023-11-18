@@ -168,9 +168,9 @@ const GameCard: FC<Props> = ({
 
                 {/* Level */}
                 <Text
-                    x={1218}
+                    x={level.length > 2 ? 1203 : 1218}
                     y={695}
-                    width={80}
+                    width={level.length > 2 ? 110 : 80}
                     height={80}
                     align={'center'}
                     verticalAlign={'middle'}
@@ -182,9 +182,9 @@ const GameCard: FC<Props> = ({
 
                 {/* Rank Level */}
                 <Text
-                    x={1452}
+                    x={rankLevel.length > 2 ? 1422 : 1452}
                     y={695}
-                    width={80}
+                    width={rankLevel.length > 2 ? 140 : 80}
                     height={80}
                     align={'center'}
                     verticalAlign={'middle'}
