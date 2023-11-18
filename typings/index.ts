@@ -47,6 +47,11 @@ export enum RANK_LEVEL {
     S_MINUS = 'S-',
     S = 'S',
     S_PLUS = 'S+',
+    S_PLUS_TEN = 'S+10',
+    S_PLUS_TWENTY = 'S+20',
+    S_PLUS_THIRTY = 'S+30',
+    S_PLUS_FORTY = 'S+40',
+    S_PLUS_FIFTY = 'S+50',
 }
 
 export enum VOICE_CHAT {
