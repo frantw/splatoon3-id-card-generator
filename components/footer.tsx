@@ -24,14 +24,14 @@ const Footer = () => {
                 <Stack>
                     <Text color={'gray.500'} fontSize={{ base: '12px', sm: '14px' }}>
                         感謝{' '}
-                        <Link color={'#1DA1F2'} href='https://twitter.com/roo_kie_art'>
+                        <Link color={'#7D7DFA'} href='https://twitter.com/roo_kie_art'>
                             Roo (@roo_kie_art)
                         </Link>{' '}
                         授權提供名片模板
                     </Text>
                     <Text color={'gray.500'} fontSize={{ base: '12px', sm: '14px' }}>
                         感謝{' '}
-                        <Link color={'#1DA1F2'} href='https://stat.ink/api-info/weapon3'>
+                        <Link color={'#7D7DFA'} href='https://stat.ink/api-info/weapon3'>
                             stat.ink
                         </Link>{' '}
                         開源項目提供武器數據

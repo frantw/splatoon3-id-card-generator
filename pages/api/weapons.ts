@@ -54,7 +54,7 @@ type TWeaponClass = Record<string, string>;
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
-        const response = await fetch(url, {next: {revalidate: 60 * 60 * 24 * 7}});
+        const response = await fetch(url, { next: { revalidate: 60 * 60 * 24 * 7 } });
         const data = await response.json();
 
         const weaponData = normalizer(data as Weapon[]);
