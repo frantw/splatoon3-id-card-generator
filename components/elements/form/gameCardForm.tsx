@@ -1,4 +1,4 @@
-import React, { FC, useState, useRef, ChangeEvent, MutableRefObject } from 'react';
+import React, { FC, useState, useRef, ChangeEvent, MutableRefObject, useMemo } from 'react';
 import {
     Box,
     HStack,
@@ -29,13 +29,20 @@ import dynamic from 'next/dynamic';
 import CommonForm from './commonForm';
 import { commonFormType } from '../../../hooks/useCommonForm';
 import { sceneWidth, sceneHeight } from '../../../constants';
-import { useGetWeapons } from '../../../hooks';
+import { useFetch } from '../../../hooks';
 
 const GameCard = dynamic(() => import('../container/gameCard'), { ssr: false, loading: () => <Skeleton /> });
 
 type Props = {
     containerSize: { width: number; height: number };
 } & commonFormType;
+
+type TWeaponClass = Record<string, string>;
+
+type TWeaponData = {
+    weaponClass: TWeaponClass;
+    weaponType: Record<string, TWeaponClass>;
+};
 
 const GameCardForm: FC<Props> = ({
     containerSize,
@@ -51,17 +58,19 @@ const GameCardForm: FC<Props> = ({
         setFontFamily(FONT_FAMILY[value as keyof typeof FONT_FAMILY]);
     };
 
-    const { weaponClass: fetchedWeaponClass, weaponType: fetchedWeaponType } = useGetWeapons();
+    const { data: weaponData = {}, error } = useFetch('/api/weapons');
+    const { weaponClass: fetchedWeaponClass = {}, weaponType: fetchedWeaponType = {} } = weaponData as TWeaponData;
+    const isError = useMemo(() => !!error, [error]);
 
     const [weaponList, setWeaponList] = useState({});
     const handleWeaponClassChange = ({ currentTarget: { value } }: ChangeEvent<HTMLSelectElement>) => {
         if (!value) {
             setWeaponList({});
         }
-        if (fetchedWeaponType) {
-            setWeaponList(fetchedWeaponType?.[value] || []);
-        } else {
+        if (isError) {
             setWeaponList(WEAPON_TYPE[value as keyof typeof WEAPON_CLASS]);
+        } else {
+            setWeaponList(fetchedWeaponType?.[value] ?? {});
         }
     };
 
@@ -170,13 +179,13 @@ const GameCardForm: FC<Props> = ({
                         <SimpleGrid columns={2} spacing={{ md: 1, sm: 10, base: 1 }}>
                             {/* Weapon Class */}
                             <Select placeholder='選擇武器分類' isRequired={true} onChange={handleWeaponClassChange}>
-                                {fetchedWeaponClass &&
+                                {!isError &&
                                     Object.keys(fetchedWeaponClass).map((weaponClassKey) => (
                                         <option key={weaponClassKey} value={weaponClassKey}>
                                             {fetchedWeaponClass[weaponClassKey]}
                                         </option>
                                     ))}
-                                {!fetchedWeaponClass &&
+                                {isError &&
                                     (Object.keys(WEAPON_CLASS) as (keyof typeof WEAPON_CLASS)[]).map(
                                         (weaponClassKey) => (
                                             <option key={weaponClassKey} value={weaponClassKey}>
